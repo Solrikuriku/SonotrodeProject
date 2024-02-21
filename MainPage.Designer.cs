@@ -45,6 +45,8 @@
             TestBoxForValues = new RichTextBox();
             SoundValues = new TextBox();
             ProcessWave = new PictureBox();
+            MakeWave = new CheckBox();
+            richTextBox1 = new RichTextBox();
             ParametersGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)AlSound).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ProcessWave).BeginInit();
@@ -198,15 +200,36 @@
             // 
             ProcessWave.Location = new Point(544, 184);
             ProcessWave.Name = "ProcessWave";
-            ProcessWave.Size = new Size(233, 452);
+            ProcessWave.Size = new Size(599, 452);
             ProcessWave.TabIndex = 15;
             ProcessWave.TabStop = false;
+            ProcessWave.Paint += ProcessWave_Paint;
+            // 
+            // MakeWave
+            // 
+            MakeWave.AutoSize = true;
+            MakeWave.Location = new Point(822, 144);
+            MakeWave.Name = "MakeWave";
+            MakeWave.Size = new Size(107, 24);
+            MakeWave.TabIndex = 16;
+            MakeWave.Text = "Show Wave";
+            MakeWave.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(291, 190);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(219, 446);
+            richTextBox1.TabIndex = 17;
+            richTextBox1.Text = "";
             // 
             // SonotrodeGenerator
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 648);
+            ClientSize = new Size(1200, 648);
+            Controls.Add(richTextBox1);
+            Controls.Add(MakeWave);
             Controls.Add(ProcessWave);
             Controls.Add(SoundValues);
             Controls.Add(TestBoxForValues);
@@ -247,5 +270,7 @@
         private RichTextBox TestBoxForValues;
         private TextBox SoundValues;
         private PictureBox ProcessWave;
+        private CheckBox MakeWave;
+        private RichTextBox richTextBox1;
     }
 }
