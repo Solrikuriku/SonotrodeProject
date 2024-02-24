@@ -68,7 +68,6 @@ namespace SonotrodeProject
         public int Width { get; set; }
         public int Height { get; set; }
     }
-
     public class StepwiseCircularSonotrode : CircularSonotrode
     {
         //double d1;
@@ -87,8 +86,8 @@ namespace SonotrodeProject
         public override double A1 { get { return GetArea(D1); } }
         public override double A2 { get { return GetArea(D2); } }
         public override double OscillationNode { get { return 0.4f; } }
-        public double L1 { get; set; }
-        public double L2 { get; set; }
+        public double I1 { get; set; }
+        public double I2 { get; set; }
         public double GetArea(double d) { return Math.PI * ((d / 2) * (d / 2)); }
     }
     public class ConicRectangleSonotrode : RectangleSonotrode
@@ -96,8 +95,10 @@ namespace SonotrodeProject
         public override double A2 { get { return Width * Height; } }
         public override double A1 { get { return A2 * Beta * Beta; } }
         public override double OscillationNode { get { return 0.4f; } }
-        public double L1 { get; set; }
-        public double L2 { get; set; }
-
+        public double I1 { get; set; }
+        public double I2 { get; set; }
     }
+
+    //возможно делать гет-сет для l1-l2 решение не очень хорошее
+    //но на данный момент я не придумала ничего лучше :[ 
 }

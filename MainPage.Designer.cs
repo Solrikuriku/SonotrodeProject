@@ -40,15 +40,16 @@
             WidthName = new Label();
             AmplitudeName = new Label();
             UpdateData = new Button();
-            TestBoxForValues = new RichTextBox();
             ProcessWave = new PictureBox();
             MakeWave = new CheckBox();
             AlSound = new NumericUpDown();
             SpeedOfSoundName = new Label();
             SonotrodeParameters = new GroupBox();
+            SonotrodeDescription = new Label();
             ParametersGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ProcessWave).BeginInit();
             ((System.ComponentModel.ISupportInitialize)AlSound).BeginInit();
+            SonotrodeParameters.SuspendLayout();
             SuspendLayout();
             // 
             // SonotrodeName
@@ -99,7 +100,7 @@
             ParametersGroup.Controls.Add(WidthName);
             ParametersGroup.Controls.Add(HeightR);
             ParametersGroup.Controls.Add(WidthR);
-            ParametersGroup.Location = new Point(312, 6);
+            ParametersGroup.Location = new Point(289, 12);
             ParametersGroup.Name = "ParametersGroup";
             ParametersGroup.Size = new Size(465, 100);
             ParametersGroup.TabIndex = 5;
@@ -159,19 +160,11 @@
             UpdateData.UseVisualStyleBackColor = true;
             UpdateData.Click += UpdateData_Click;
             // 
-            // TestBoxForValues
-            // 
-            TestBoxForValues.Location = new Point(12, 194);
-            TestBoxForValues.Name = "TestBoxForValues";
-            TestBoxForValues.Size = new Size(239, 442);
-            TestBoxForValues.TabIndex = 13;
-            TestBoxForValues.Text = "";
-            // 
             // ProcessWave
             // 
-            ProcessWave.Location = new Point(285, 194);
+            ProcessWave.Location = new Point(289, 153);
             ProcessWave.Name = "ProcessWave";
-            ProcessWave.Size = new Size(599, 452);
+            ProcessWave.Size = new Size(465, 425);
             ProcessWave.TabIndex = 15;
             ProcessWave.TabStop = false;
             ProcessWave.Paint += ProcessWave_Paint;
@@ -179,7 +172,7 @@
             // MakeWave
             // 
             MakeWave.AutoSize = true;
-            MakeWave.Location = new Point(602, 123);
+            MakeWave.Location = new Point(597, 121);
             MakeWave.Name = "MakeWave";
             MakeWave.Size = new Size(107, 24);
             MakeWave.TabIndex = 16;
@@ -201,7 +194,7 @@
             // SpeedOfSoundName
             // 
             SpeedOfSoundName.AutoSize = true;
-            SpeedOfSoundName.Location = new Point(312, 122);
+            SpeedOfSoundName.Location = new Point(289, 120);
             SpeedOfSoundName.Name = "SpeedOfSoundName";
             SpeedOfSoundName.Size = new Size(120, 20);
             SpeedOfSoundName.TabIndex = 12;
@@ -209,23 +202,32 @@
             // 
             // SonotrodeParameters
             // 
-            SonotrodeParameters.Location = new Point(919, 32);
+            SonotrodeParameters.Controls.Add(SonotrodeDescription);
+            SonotrodeParameters.Location = new Point(12, 142);
             SonotrodeParameters.Name = "SonotrodeParameters";
-            SonotrodeParameters.Size = new Size(250, 253);
+            SonotrodeParameters.Size = new Size(250, 436);
             SonotrodeParameters.TabIndex = 19;
             SonotrodeParameters.TabStop = false;
-            SonotrodeParameters.Text = "Parameters";
+            SonotrodeParameters.Text = "Info";
+            // 
+            // SonotrodeDescription
+            // 
+            SonotrodeDescription.AutoSize = true;
+            SonotrodeDescription.Location = new Point(16, 38);
+            SonotrodeDescription.Name = "SonotrodeDescription";
+            SonotrodeDescription.Size = new Size(18, 20);
+            SonotrodeDescription.TabIndex = 0;
+            SonotrodeDescription.Text = "...";
             // 
             // SonotrodeGenerator
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1181, 692);
+            ClientSize = new Size(781, 590);
             Controls.Add(SonotrodeParameters);
             Controls.Add(AlSound);
             Controls.Add(MakeWave);
             Controls.Add(ProcessWave);
-            Controls.Add(TestBoxForValues);
             Controls.Add(SpeedOfSoundName);
             Controls.Add(UpdateData);
             Controls.Add(AmplitudeName);
@@ -235,10 +237,13 @@
             Controls.Add(Amplitude);
             Name = "SonotrodeGenerator";
             Text = "Вменяемое название пока не придумано";
+            Load += SonotrodeGenerator_Load;
             ParametersGroup.ResumeLayout(false);
             ParametersGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ProcessWave).EndInit();
             ((System.ComponentModel.ISupportInitialize)AlSound).EndInit();
+            SonotrodeParameters.ResumeLayout(false);
+            SonotrodeParameters.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -257,11 +262,11 @@
         private Label WidthName;
         private Label AmplitudeName;
         private Button UpdateData;
-        private RichTextBox TestBoxForValues;
         private PictureBox ProcessWave;
         private CheckBox MakeWave;
         private NumericUpDown AlSound;
         private Label SpeedOfSoundName;
         private GroupBox SonotrodeParameters;
+        private Label SonotrodeDescription;
     }
 }

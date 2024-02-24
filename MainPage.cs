@@ -1,3 +1,4 @@
+using System.Text;
 using System.Windows.Forms;
 
 namespace SonotrodeProject
@@ -7,6 +8,7 @@ namespace SonotrodeProject
         public SonotrodeGenerator()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.DoubleBuffer, true);
             SonotrodeType.SelectedIndex = 0;
             ProcessWave.Image = new Bitmap(ProcessWave.Width, ProcessWave.Height);
             ProcessWave.BackColor = Color.White;
@@ -16,10 +18,28 @@ namespace SonotrodeProject
         private readonly List<WaveCoordinates> SonotrodeWavePixels = new();
         private readonly List<PointF> CurveWave = new();
         private readonly List<WaveGradient> GradientWave = new();
+        private SonotrodeTypes Type;
+        private enum SonotrodeTypes
+        {
+            StepwiseCircular,
+            ConicCircular,
+            ConicRectangle
+        }
+        //для подавления мерцания?
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+        //        return cp;
+        //    }
+        //}
 
         private void SonotrodeType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SonotrodeType.SelectedIndex != 2)
+            Type = (SonotrodeTypes)SonotrodeType.SelectedIndex;
+            if (Type != SonotrodeTypes.ConicRectangle)
             {
                 Diameter.Enabled = true;
                 WidthR.Enabled = false;
@@ -33,21 +53,21 @@ namespace SonotrodeProject
             }
         }
 
-        private static double AluminiumLength()
-        {
-            return 20f;
-        }
+        //private static double AluminiumLength()
+        //{
+        //    return 20f;
+        //}
 
         private void UpdateData_Click(object sender, EventArgs e)
         {
-            TestBoxForValues.Clear();
             SonotrodeWavePixels.Clear();
             CurveWave.Clear();
+            GradientWave.Clear();
+            Sonotrode sonotrodetest;
 
-            if (SonotrodeType.SelectedIndex == 0)
+            if (Type == SonotrodeTypes.StepwiseCircular)
             {
-
-                var sonotrodetest = new StepwiseCircularSonotrode()
+                sonotrodetest = new StepwiseCircularSonotrode()
                 {
                     SpeedOfSound = (int)AlSound.Value,
                     //исходное
@@ -58,31 +78,11 @@ namespace SonotrodeProject
                     K = 1,
                     D2 = double.Parse(Diameter.Text)
                 };
-
-                var sonotrodeWave = new WaveParameters()
-                {
-                    L = sonotrodetest.L,
-                    ON = sonotrodetest.OscillationNode,
-                    U = sonotrodetest.SpeedOfSound
-                };
-
-                MakeCurve(sonotrodetest, sonotrodeWave);
-
-                TestBoxForValues.AppendText
-                    (
-                        sonotrodetest.D1.ToString() + "\n"
-                      + sonotrodetest.D2.ToString() + "\n"
-                      + sonotrodetest.A1.ToString() + "\n"
-                      + sonotrodetest.A2.ToString() + "\n"
-                      + sonotrodetest.L1.ToString() + "\n"
-                      + sonotrodetest.L2.ToString() + "\n"
-                      + sonotrodetest.L.ToString()
-                    );
             }
-            else if (SonotrodeType.SelectedIndex == 1)
+            else if (Type == SonotrodeTypes.ConicCircular)
             {
 
-                var sonotrodetest = new ConicCircularSonotrode()
+                sonotrodetest = new ConicCircularSonotrode()
                 {
                     SpeedOfSound = (int)AlSound.Value,
                     //исходное
@@ -92,33 +92,13 @@ namespace SonotrodeProject
                     Frequency = 20,
                     K = 1.03,
                     D2 = double.Parse(Diameter.Text),
-                    L1 = 10,
-                    L2 = 10
+                    I1 = 10,
+                    I2 = 10
                 };
-
-                var sonotrodeWave = new WaveParameters()
-                {
-                    L = sonotrodetest.L,
-                    ON = sonotrodetest.OscillationNode,
-                    U = sonotrodetest.SpeedOfSound
-                };
-
-                MakeCurve(sonotrodetest, sonotrodeWave);
-
-                TestBoxForValues.AppendText
-                    (
-                        sonotrodetest.D1.ToString() + "\n"
-                      + sonotrodetest.D2.ToString() + "\n"
-                      + sonotrodetest.A1.ToString() + "\n"
-                      + sonotrodetest.A2.ToString() + "\n"
-                      + sonotrodetest.L1.ToString() + "\n"
-                      + sonotrodetest.L2.ToString() + "\n"
-                      + sonotrodetest.L.ToString()
-                    );
             }
             else
             {
-                var sonotrodetest = new ConicRectangleSonotrode()
+                sonotrodetest = new ConicRectangleSonotrode()
                 {
                     SpeedOfSound = (int)AlSound.Value,
                     //исходное
@@ -129,29 +109,29 @@ namespace SonotrodeProject
                     //исходное
                     Frequency = 20,
                     K = 1,
-                    L1 = 10,
-                    L2 = 10
+                    I1 = 10,
+                    I2 = 10
                 };
-
-                TestBoxForValues.AppendText
-                    (
-                        sonotrodetest.A1.ToString() + "\n"
-                      + sonotrodetest.A2.ToString() + "\n"
-                      + sonotrodetest.L1.ToString() + "\n"
-                      + sonotrodetest.L2.ToString() + "\n"
-                      + sonotrodetest.L.ToString()
-                    );
             }
+
+            var sonotrodeWave = new WaveParameters()
+            {
+                L = sonotrodetest.L,
+                ON = sonotrodetest.OscillationNode,
+                U = sonotrodetest.SpeedOfSound
+            };
+
+            MakeCurve(sonotrodetest, sonotrodeWave);
+            SonotrodeDescription.Text = GenerateDescription(sonotrodetest);
         }
 
         private void ProcessWave_Paint(object sender, PaintEventArgs e)
         {
+            //this.DoubleBuffered = true;
             if (MakeWave.Checked)
             {
                 foreach (var p in GradientWave)
-                {
                     e.Graphics.DrawLine(p.PenColor, p.LinePixel, p.BorderPixel);
-                }
 
                 e.Graphics.DrawCurve(new Pen(Color.Black, 2), CurveWave.ToArray());
             }
@@ -177,6 +157,39 @@ namespace SonotrodeProject
             {
                 GradientWave.Add(new WaveGradient(sonotrode.AmplitudeDetail, ProcessWave.Height, CurveWave[i], new PointF(i, ProcessWave.Height / 2)));
             }
+        }
+        private string GenerateDescription(Sonotrode sonotrode)
+        {
+            var description = new StringBuilder();
+            description.AppendLine("A1: " + sonotrode.A1.ToString());
+            description.AppendLine("A2: " + sonotrode.A2.ToString());
+            if (Type == SonotrodeTypes.StepwiseCircular)
+            {
+                description.AppendLine("D1: " + ((StepwiseCircularSonotrode)sonotrode).D1.ToString());
+                description.AppendLine("D2: " + ((StepwiseCircularSonotrode)sonotrode).D2.ToString());
+                description.AppendLine("L1: " + ((StepwiseCircularSonotrode)sonotrode).D1.ToString());
+                description.AppendLine("L2: " + ((StepwiseCircularSonotrode)sonotrode).D2.ToString());
+            }
+            else if (Type == SonotrodeTypes.ConicCircular)
+            {
+                description.AppendLine("I1: " + ((ConicCircularSonotrode)sonotrode).I1.ToString());
+                description.AppendLine("I2: " + ((ConicCircularSonotrode)sonotrode).I2.ToString());
+            }
+            else if (Type == SonotrodeTypes.ConicRectangle)
+            {
+                description.AppendLine("Width: " + ((RectangleSonotrode)sonotrode).Width.ToString());
+                description.AppendLine("Height: " + ((RectangleSonotrode)sonotrode).Height.ToString());
+                description.AppendLine("I1: " + ((ConicRectangleSonotrode)sonotrode).I1.ToString());
+                description.AppendLine("I2: " + ((ConicRectangleSonotrode)sonotrode).I2.ToString());
+            }
+            description.AppendLine("L: " + sonotrode.L.ToString());
+
+            return description.ToString();
+        }
+
+        private void SonotrodeGenerator_Load(object sender, EventArgs e)
+        {
+            Type = (SonotrodeTypes)SonotrodeType.SelectedIndex;
         }
     }
 }
