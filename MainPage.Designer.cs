@@ -31,8 +31,8 @@
             SonotrodeName = new Label();
             SonotrodeType = new ComboBox();
             Amplitude = new TextBox();
-            Width = new TextBox();
-            Height = new TextBox();
+            WidthR = new TextBox();
+            HeightR = new TextBox();
             ParametersGroup = new GroupBox();
             DiameterName = new Label();
             HeightName = new Label();
@@ -40,22 +40,21 @@
             WidthName = new Label();
             AmplitudeName = new Label();
             UpdateData = new Button();
-            AlSound = new TrackBar();
-            SpeedOfSoundName = new Label();
             TestBoxForValues = new RichTextBox();
-            SoundValues = new TextBox();
             ProcessWave = new PictureBox();
             MakeWave = new CheckBox();
-            richTextBox1 = new RichTextBox();
+            AlSound = new NumericUpDown();
+            SpeedOfSoundName = new Label();
+            SonotrodeParameters = new GroupBox();
             ParametersGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)AlSound).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ProcessWave).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)AlSound).BeginInit();
             SuspendLayout();
             // 
             // SonotrodeName
             // 
             SonotrodeName.AutoSize = true;
-            SonotrodeName.Location = new Point(12, 9);
+            SonotrodeName.Location = new Point(12, 18);
             SonotrodeName.Name = "SonotrodeName";
             SonotrodeName.Size = new Size(82, 20);
             SonotrodeName.TabIndex = 0;
@@ -65,7 +64,7 @@
             // 
             SonotrodeType.FormattingEnabled = true;
             SonotrodeType.Items.AddRange(new object[] { "Stepwise Circular", "Conical Circular", "Conical Rectangle" });
-            SonotrodeType.Location = new Point(100, 6);
+            SonotrodeType.Location = new Point(100, 15);
             SonotrodeType.Name = "SonotrodeType";
             SonotrodeType.Size = new Size(151, 28);
             SonotrodeType.TabIndex = 1;
@@ -73,24 +72,24 @@
             // 
             // Amplitude
             // 
-            Amplitude.Location = new Point(100, 49);
+            Amplitude.Location = new Point(100, 58);
             Amplitude.Name = "Amplitude";
             Amplitude.Size = new Size(151, 27);
             Amplitude.TabIndex = 2;
             // 
-            // Width
+            // WidthR
             // 
-            Width.Location = new Point(290, 26);
-            Width.Name = "Width";
-            Width.Size = new Size(125, 27);
-            Width.TabIndex = 3;
+            WidthR.Location = new Point(290, 26);
+            WidthR.Name = "WidthR";
+            WidthR.Size = new Size(125, 27);
+            WidthR.TabIndex = 3;
             // 
-            // Height
+            // HeightR
             // 
-            Height.Location = new Point(290, 60);
-            Height.Name = "Height";
-            Height.Size = new Size(125, 27);
-            Height.TabIndex = 4;
+            HeightR.Location = new Point(290, 60);
+            HeightR.Name = "HeightR";
+            HeightR.Size = new Size(125, 27);
+            HeightR.TabIndex = 4;
             // 
             // ParametersGroup
             // 
@@ -98,8 +97,8 @@
             ParametersGroup.Controls.Add(HeightName);
             ParametersGroup.Controls.Add(Diameter);
             ParametersGroup.Controls.Add(WidthName);
-            ParametersGroup.Controls.Add(Height);
-            ParametersGroup.Controls.Add(Width);
+            ParametersGroup.Controls.Add(HeightR);
+            ParametersGroup.Controls.Add(WidthR);
             ParametersGroup.Location = new Point(312, 6);
             ParametersGroup.Name = "ParametersGroup";
             ParametersGroup.Size = new Size(465, 100);
@@ -144,7 +143,7 @@
             // AmplitudeName
             // 
             AmplitudeName.AutoSize = true;
-            AmplitudeName.Location = new Point(12, 52);
+            AmplitudeName.Location = new Point(12, 61);
             AmplitudeName.Name = "AmplitudeName";
             AmplitudeName.Size = new Size(82, 20);
             AmplitudeName.TabIndex = 9;
@@ -152,7 +151,7 @@
             // 
             // UpdateData
             // 
-            UpdateData.Location = new Point(132, 82);
+            UpdateData.Location = new Point(132, 91);
             UpdateData.Name = "UpdateData";
             UpdateData.Size = new Size(94, 29);
             UpdateData.TabIndex = 10;
@@ -160,17 +159,44 @@
             UpdateData.UseVisualStyleBackColor = true;
             UpdateData.Click += UpdateData_Click;
             // 
+            // TestBoxForValues
+            // 
+            TestBoxForValues.Location = new Point(12, 194);
+            TestBoxForValues.Name = "TestBoxForValues";
+            TestBoxForValues.Size = new Size(239, 442);
+            TestBoxForValues.TabIndex = 13;
+            TestBoxForValues.Text = "";
+            // 
+            // ProcessWave
+            // 
+            ProcessWave.Location = new Point(285, 194);
+            ProcessWave.Name = "ProcessWave";
+            ProcessWave.Size = new Size(599, 452);
+            ProcessWave.TabIndex = 15;
+            ProcessWave.TabStop = false;
+            ProcessWave.Paint += ProcessWave_Paint;
+            // 
+            // MakeWave
+            // 
+            MakeWave.AutoSize = true;
+            MakeWave.Location = new Point(602, 123);
+            MakeWave.Name = "MakeWave";
+            MakeWave.Size = new Size(107, 24);
+            MakeWave.TabIndex = 16;
+            MakeWave.Text = "Show Wave";
+            MakeWave.UseVisualStyleBackColor = true;
+            // 
             // AlSound
             // 
-            AlSound.Location = new Point(427, 122);
-            AlSound.Maximum = 5300;
-            AlSound.Minimum = 4900;
+            AlSound.Increment = new decimal(new int[] { 10, 0, 0, 0 });
+            AlSound.Location = new Point(438, 120);
+            AlSound.Maximum = new decimal(new int[] { 5300, 0, 0, 0 });
+            AlSound.Minimum = new decimal(new int[] { 4900, 0, 0, 0 });
             AlSound.Name = "AlSound";
-            AlSound.Size = new Size(169, 56);
-            AlSound.TabIndex = 11;
-            AlSound.TickFrequency = 50;
-            AlSound.Value = 5100;
-            AlSound.Scroll += AlSound_Scroll;
+            AlSound.Size = new Size(150, 27);
+            AlSound.TabIndex = 18;
+            AlSound.TextAlign = HorizontalAlignment.Center;
+            AlSound.Value = new decimal(new int[] { 4900, 0, 0, 0 });
             // 
             // SpeedOfSoundName
             // 
@@ -181,60 +207,26 @@
             SpeedOfSoundName.TabIndex = 12;
             SpeedOfSoundName.Text = "Speed Of Sound:";
             // 
-            // TestBoxForValues
+            // SonotrodeParameters
             // 
-            TestBoxForValues.Location = new Point(12, 194);
-            TestBoxForValues.Name = "TestBoxForValues";
-            TestBoxForValues.Size = new Size(239, 442);
-            TestBoxForValues.TabIndex = 13;
-            TestBoxForValues.Text = "";
-            // 
-            // SoundValues
-            // 
-            SoundValues.Location = new Point(602, 122);
-            SoundValues.Name = "SoundValues";
-            SoundValues.Size = new Size(125, 27);
-            SoundValues.TabIndex = 14;
-            // 
-            // ProcessWave
-            // 
-            ProcessWave.Location = new Point(544, 184);
-            ProcessWave.Name = "ProcessWave";
-            ProcessWave.Size = new Size(599, 452);
-            ProcessWave.TabIndex = 15;
-            ProcessWave.TabStop = false;
-            ProcessWave.Paint += ProcessWave_Paint;
-            // 
-            // MakeWave
-            // 
-            MakeWave.AutoSize = true;
-            MakeWave.Location = new Point(822, 144);
-            MakeWave.Name = "MakeWave";
-            MakeWave.Size = new Size(107, 24);
-            MakeWave.TabIndex = 16;
-            MakeWave.Text = "Show Wave";
-            MakeWave.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox1
-            // 
-            richTextBox1.Location = new Point(291, 190);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(219, 446);
-            richTextBox1.TabIndex = 17;
-            richTextBox1.Text = "";
+            SonotrodeParameters.Location = new Point(919, 32);
+            SonotrodeParameters.Name = "SonotrodeParameters";
+            SonotrodeParameters.Size = new Size(250, 253);
+            SonotrodeParameters.TabIndex = 19;
+            SonotrodeParameters.TabStop = false;
+            SonotrodeParameters.Text = "Parameters";
             // 
             // SonotrodeGenerator
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1200, 648);
-            Controls.Add(richTextBox1);
+            ClientSize = new Size(1181, 692);
+            Controls.Add(SonotrodeParameters);
+            Controls.Add(AlSound);
             Controls.Add(MakeWave);
             Controls.Add(ProcessWave);
-            Controls.Add(SoundValues);
             Controls.Add(TestBoxForValues);
             Controls.Add(SpeedOfSoundName);
-            Controls.Add(AlSound);
             Controls.Add(UpdateData);
             Controls.Add(AmplitudeName);
             Controls.Add(ParametersGroup);
@@ -245,8 +237,8 @@
             Text = "Вменяемое название пока не придумано";
             ParametersGroup.ResumeLayout(false);
             ParametersGroup.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)AlSound).EndInit();
             ((System.ComponentModel.ISupportInitialize)ProcessWave).EndInit();
+            ((System.ComponentModel.ISupportInitialize)AlSound).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -256,8 +248,8 @@
         private Label SonotrodeName;
         private ComboBox SonotrodeType;
         private TextBox Amplitude;
-        private TextBox Width;
-        private TextBox Height;
+        private TextBox WidthR;
+        private TextBox HeightR;
         private GroupBox ParametersGroup;
         private Label DiameterName;
         private TextBox Diameter;
@@ -265,12 +257,11 @@
         private Label WidthName;
         private Label AmplitudeName;
         private Button UpdateData;
-        private TrackBar AlSound;
-        private Label SpeedOfSoundName;
         private RichTextBox TestBoxForValues;
-        private TextBox SoundValues;
         private PictureBox ProcessWave;
         private CheckBox MakeWave;
-        private RichTextBox richTextBox1;
+        private NumericUpDown AlSound;
+        private Label SpeedOfSoundName;
+        private GroupBox SonotrodeParameters;
     }
 }

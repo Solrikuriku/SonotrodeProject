@@ -10,28 +10,30 @@ namespace SonotrodeProject
             SonotrodeType.SelectedIndex = 0;
             ProcessWave.Image = new Bitmap(ProcessWave.Width, ProcessWave.Height);
             ProcessWave.BackColor = Color.White;
+            AlSound.Value = 5100;
         }
 
-        private readonly List<WaveCoordinates> sonotrodeWavePixels = new List<WaveCoordinates>();
-        private List<PointF> curveWave = new List<PointF>();
-        //private readonly WaveParameters sonotrodeWave = new WaveParameters();
+        private readonly List<WaveCoordinates> SonotrodeWavePixels = new();
+        private readonly List<PointF> CurveWave = new();
+        private readonly List<WaveGradient> GradientWave = new();
+
         private void SonotrodeType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SonotrodeType.SelectedIndex != 2)
             {
                 Diameter.Enabled = true;
-                Width.Enabled = false;
-                Height.Enabled = false;
+                WidthR.Enabled = false;
+                HeightR.Enabled = false;
             }
             else
             {
                 Diameter.Enabled = false;
-                Width.Enabled = true;
-                Height.Enabled = true;
+                WidthR.Enabled = true;
+                HeightR.Enabled = true;
             }
         }
 
-        public double AluminiumLength()
+        private static double AluminiumLength()
         {
             return 20f;
         }
@@ -39,13 +41,15 @@ namespace SonotrodeProject
         private void UpdateData_Click(object sender, EventArgs e)
         {
             TestBoxForValues.Clear();
+            SonotrodeWavePixels.Clear();
+            CurveWave.Clear();
 
             if (SonotrodeType.SelectedIndex == 0)
             {
 
                 var sonotrodetest = new StepwiseCircularSonotrode()
                 {
-                    SpeedOfSound = AlSound.Value,
+                    SpeedOfSound = (int)AlSound.Value,
                     //исходное
                     AmplitudeElement = 20,
                     AmplitudeDetail = int.Parse(Amplitude.Text),
@@ -54,6 +58,15 @@ namespace SonotrodeProject
                     K = 1,
                     D2 = double.Parse(Diameter.Text)
                 };
+
+                var sonotrodeWave = new WaveParameters()
+                {
+                    L = sonotrodetest.L,
+                    ON = sonotrodetest.OscillationNode,
+                    U = sonotrodetest.SpeedOfSound
+                };
+
+                MakeCurve(sonotrodetest, sonotrodeWave);
 
                 TestBoxForValues.AppendText
                     (
@@ -71,7 +84,7 @@ namespace SonotrodeProject
 
                 var sonotrodetest = new ConicCircularSonotrode()
                 {
-                    SpeedOfSound = AlSound.Value,
+                    SpeedOfSound = (int)AlSound.Value,
                     //исходное
                     AmplitudeElement = 20,
                     AmplitudeDetail = int.Parse(Amplitude.Text),
@@ -85,24 +98,12 @@ namespace SonotrodeProject
 
                 var sonotrodeWave = new WaveParameters()
                 {
-                    l = sonotrodetest.L, 
-                    on = sonotrodetest.OscillationNode, 
-                    u = sonotrodetest.SpeedOfSound
+                    L = sonotrodetest.L,
+                    ON = sonotrodetest.OscillationNode,
+                    U = sonotrodetest.SpeedOfSound
                 };
-                //richTextBox1.AppendText(sonotrodeWave.Center() + "\n" + sonotrodeWave.T());
-                //for (int i = 0; i < sonotrodeWave.Center; i++)
-                //{
-                //    sonotrodeWavePixels.Add(new WaveCoordinates(sonotrodetest.AmplitudeElement, i, ProcessWave.Height / 2, 5, sonotrodetest.K, sonotrodeWave.Coefficient(sonotrodetest.OscillationNode), Math.PI / 2));
-                //    curveWave.Add(new PointF((float)sonotrodeWavePixels[i].X, (float)sonotrodeWavePixels[i].Y));
-                //}
-                //for (int i = sonotrodeWave.Center; i < sonotrodeWave.T; i++)
-                //{
-                //    sonotrodeWavePixels.Add(new WaveCoordinates(sonotrodetest.AmplitudeDetail, i, ProcessWave.Height / 2, 5, sonotrodetest.K, sonotrodeWave.Coefficient(1 - sonotrodetest.OscillationNode), 2 * Math.PI / 3));
-                //    curveWave.Add(new PointF((float)sonotrodeWavePixels[i].X, (float)sonotrodeWavePixels[i].Y));
-                //}
 
-                //curveWave.Clear();
-                MakeConicCurve(sonotrodetest, sonotrodeWave);
+                MakeCurve(sonotrodetest, sonotrodeWave);
 
                 TestBoxForValues.AppendText
                     (
@@ -119,12 +120,12 @@ namespace SonotrodeProject
             {
                 var sonotrodetest = new ConicRectangleSonotrode()
                 {
-                    SpeedOfSound = AlSound.Value,
+                    SpeedOfSound = (int)AlSound.Value,
                     //исходное
                     AmplitudeElement = 20,
                     AmplitudeDetail = int.Parse(Amplitude.Text),
-                    Width = int.Parse(Width.Text),
-                    Height = int.Parse(Height.Text),
+                    Width = int.Parse(WidthR.Text),
+                    Height = int.Parse(HeightR.Text),
                     //исходное
                     Frequency = 20,
                     K = 1,
@@ -143,38 +144,39 @@ namespace SonotrodeProject
             }
         }
 
-        private void AlSound_Scroll(object sender, EventArgs e)
-        {
-            SoundValues.Text = AlSound.Value.ToString();
-        }
-
         private void ProcessWave_Paint(object sender, PaintEventArgs e)
         {
             if (MakeWave.Checked)
             {
-                e.Graphics.DrawCurve(new Pen(Color.Black), curveWave.ToArray());
+                foreach (var p in GradientWave)
+                {
+                    e.Graphics.DrawLine(p.PenColor, p.LinePixel, p.BorderPixel);
+                }
+
+                e.Graphics.DrawCurve(new Pen(Color.Black, 2), CurveWave.ToArray());
             }
+
+            e.Graphics.DrawLine(new Pen(Color.Black, 2), new PointF(0, ProcessWave.Height / 2), new PointF(ProcessWave.Width, ProcessWave.Height / 2));
             this.Refresh();
         }
 
         //перегрузки?
-        private void MakeConicCurve(Sonotrode sonotrode, WaveParameters wave)
+        private void MakeCurve(Sonotrode sonotrode, WaveParameters wave)
         {
             for (int i = 0; i < wave.Center; i++)
             {
-                sonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeElement, i, ProcessWave.Height / 2, 5, sonotrode.K, wave.Coefficient(sonotrode.OscillationNode), wave.Shift(sonotrode.OscillationNode)));
-                curveWave.Add(new PointF((float)sonotrodeWavePixels[i].X, (float)sonotrodeWavePixels[i].Y));
+                SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeElement, i, ProcessWave.Height / 2, 5, sonotrode.K, wave.Coefficient(sonotrode.OscillationNode), wave.Shift(sonotrode.OscillationNode)));
+                CurveWave.Add(new PointF((float)SonotrodeWavePixels[i].X, (float)SonotrodeWavePixels[i].Y));
             }
             for (int i = wave.Center; i < wave.T; i++)
             {
-                sonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeDetail, i, ProcessWave.Height / 2, 5, sonotrode.K, wave.Coefficient(1 - sonotrode.OscillationNode), wave.Shift(1 - sonotrode.OscillationNode)));
-                curveWave.Add(new PointF((float)sonotrodeWavePixels[i].X, (float)sonotrodeWavePixels[i].Y));
+                SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeDetail, i, ProcessWave.Height / 2, 5, sonotrode.K, wave.Coefficient(1 - sonotrode.OscillationNode), wave.Shift(1 - sonotrode.OscillationNode)));
+                CurveWave.Add(new PointF((float)SonotrodeWavePixels[i].X, (float)SonotrodeWavePixels[i].Y));
             }
-        }
-
-        private void MakeStepwiseCurve(int a, int b)
-        {
-
+            for (int i = 0; i < wave.T; i++)
+            {
+                GradientWave.Add(new WaveGradient(sonotrode.AmplitudeDetail, ProcessWave.Height, CurveWave[i], new PointF(i, ProcessWave.Height / 2)));
+            }
         }
     }
 }
