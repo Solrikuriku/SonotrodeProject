@@ -46,6 +46,7 @@
             SpeedOfSoundName = new Label();
             SonotrodeParameters = new GroupBox();
             SonotrodeDescription = new Label();
+            AnimationWave = new CheckBox();
             ParametersGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ProcessWave).BeginInit();
             ((System.ComponentModel.ISupportInitialize)AlSound).BeginInit();
@@ -167,6 +168,7 @@
             ProcessWave.Size = new Size(465, 425);
             ProcessWave.TabIndex = 15;
             ProcessWave.TabStop = false;
+            ProcessWave.Click += ProcessWave_Click;
             ProcessWave.Paint += ProcessWave_Paint;
             // 
             // MakeWave
@@ -219,11 +221,22 @@
             SonotrodeDescription.TabIndex = 0;
             SonotrodeDescription.Text = "...";
             // 
+            // AnimationWave
+            // 
+            AnimationWave.AutoSize = true;
+            AnimationWave.Location = new Point(710, 120);
+            AnimationWave.Name = "AnimationWave";
+            AnimationWave.Size = new Size(100, 24);
+            AnimationWave.TabIndex = 20;
+            AnimationWave.Text = "Animation";
+            AnimationWave.UseVisualStyleBackColor = true;
+            // 
             // SonotrodeGenerator
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(781, 590);
+            ClientSize = new Size(889, 590);
+            Controls.Add(AnimationWave);
             Controls.Add(SonotrodeParameters);
             Controls.Add(AlSound);
             Controls.Add(MakeWave);
@@ -237,6 +250,7 @@
             Controls.Add(Amplitude);
             Name = "SonotrodeGenerator";
             Text = "Вменяемое название пока не придумано";
+            FormClosing += SonotrodeGenerator_FormClosing;
             Load += SonotrodeGenerator_Load;
             ParametersGroup.ResumeLayout(false);
             ParametersGroup.PerformLayout();
@@ -268,5 +282,6 @@
         private Label SpeedOfSoundName;
         private GroupBox SonotrodeParameters;
         private Label SonotrodeDescription;
+        private CheckBox AnimationWave;
     }
 }

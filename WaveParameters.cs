@@ -106,7 +106,25 @@ namespace SonotrodeProject
 
             return HSVtoRGB(hue);
         }
+        public static Color CompstretchGradient(double a, double curA)
+        {
+            var step = a / 2;
+            double hue = 0;
+
+            if (-step <= curA && curA <= 0)
+                hue = GetHue(360, 300, -step, 0, curA);
+            else if (0 < curA && curA <= step)
+                hue = GetHue(300, 240, 0, step, curA);
+
+            return HSVtoRGB(hue);
+        }
     }
+
+    //ну и пиздец...
+    //ктож так код пишет
+    //как же хочется пивка..........
+
+    //wavegradient сделать как интерфейс-виртуальный класс
     internal class WaveGradient : ColorManipulation
     {
         public Pen PenColor { get; set; }
@@ -116,6 +134,19 @@ namespace SonotrodeProject
         public WaveGradient(double a, double height, PointF p, PointF border)
         {
             this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs((height / 2 - p.Y) / 5)));
+            this.LinePixel = p;
+            this.BorderPixel = border;
+        }
+    }
+    internal class CompstretchGradient : ColorManipulation
+    {
+        public Pen PenColor { get; set; }
+        public PointF LinePixel { get; set; }
+        public PointF BorderPixel { get; set; }
+        //public static double AmplitudeValue { private get; set; }
+        public CompstretchGradient(double a, double height, PointF p, PointF border)
+        {
+            this.PenColor = new Pen(CompstretchGradient(a, (height / 2 - p.Y) / 5));
             this.LinePixel = p;
             this.BorderPixel = border;
         }

@@ -70,15 +70,14 @@ namespace SonotrodeProject
     }
     public class StepwiseCircularSonotrode : CircularSonotrode
     {
-        //double d1;
-        public override double D1 { get { return Math.Sqrt(Beta * D2 * D2); } }
+        public override double D1 { get { return Math.Sqrt(Beta) * D2; } }
         public override double A1 { get { return GetArea(D1); } }
         public override double A2 { get { return GetArea(D2); } }
         public override double OscillationNode { get { return 0.5f; } }
-        public double L1 { get { return GetLength(A1); } }
-        public double L2 { get { return GetLength(A2) + 3; } }
+        public double L1 { get { return (1.5) / (2 * (Math.PI / (L * 2))); } }
+        public double L2 { get { return (1.6) / (2 * (Math.PI / (L * 2))) + 3; } }
         public double GetArea(double d) { return Math.PI * ((d / 2) * (d / 2)); }
-        public double GetLength(double A) { return (0.0126667 * SpeedOfSound - 0.833333) - (A / 30); }
+        //public double GetLength(double A) { return (0.0126667 * SpeedOfSound - 0.833333) - (A / 30); }
     }
     public class ConicCircularSonotrode : CircularSonotrode
     {
