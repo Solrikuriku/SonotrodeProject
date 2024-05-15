@@ -30,7 +30,8 @@ namespace SonotrodeProject
         public double ON { private get; set; } //узел колебаний
         public double U { private get; set; } //скорость волны, равна speed of sound
         //умножение на 1000 для перевода из м в мм, на 10 000 000 - для масштабирования
-        public int T { get { return (int)Math.Round((L / 1000) / U * 10000000); } }
+        public int T { get { return (int)Math.Round(L / U * 10000); } }
+        //public int T { get { return (int)Math.Round(L); } }
         public int Center { get { return (int)Math.Round(T * ON); } }
         public double Coefficient(double area)
         {
@@ -90,31 +91,33 @@ namespace SonotrodeProject
         }
         public static Color AmplitudeGradient(double a, double curA)
         {
-            var step = a / 5;
-            double hue = 0;
+            //var step = a / 4;
 
-            if (0 <= curA && curA <= step)
-                hue = GetHue(240, 195, 0, step, curA);
-            else if (step < curA && curA <= 2 * step)
-                hue = GetHue(195, 72, step, step * 2, curA);
-            else if (2 * step < curA && curA <= 3 * step)
-                hue = GetHue(72, 48, step * 2, step * 3, curA);
-            else if (3 * step < curA && curA <= 4 * step)
-                hue = GetHue(48, 24, step * 3, step * 4, curA);
-            else if (4 * step < curA && curA <= 5 * step)
-                hue = GetHue(24, 0, step * 4, step * 5, curA);
+            var hue = ((curA - a) / (- a)) * 240;
+            //double hue = 0;
+
+            //if (0 <= curA && curA <= step)
+            //    hue = GetHue(240, 180, 0, step, curA);
+            //else if (step < curA && curA <= 2 * step)
+            //    hue = GetHue(180, 120, step, step * 2, curA);
+            //else if (2 * step < curA && curA <= 3 * step)
+            //    hue = GetHue(120, 60, step * 2, step * 3, curA);
+            //else if (3 * step < curA && curA <= 4 * step)
+            //    hue = GetHue(60, 0, step * 3, step * 4, curA);
 
             return HSVtoRGB(hue);
         }
         public static Color CompstretchGradient(double a, double curA)
         {
-            var step = a / 2;
-            double hue = 0;
+            //var step = a / 2;
+            //double hue = 0;
 
-            if (-step <= curA && curA <= 0)
-                hue = GetHue(360, 300, -step, 0, curA);
-            else if (0 < curA && curA <= step)
-                hue = GetHue(300, 240, 0, step, curA);
+            var hue = ((curA + a) / (2 * a)) * 120 + 240;
+
+            //if (-step <= curA && curA <= 0)
+            //    hue = GetHue(240, 300, -step, 0, curA);
+            //else if (0 < curA && curA <= step)
+            //    hue = GetHue(300, 360, 0, step, curA);
 
             return HSVtoRGB(hue);
         }
@@ -131,9 +134,9 @@ namespace SonotrodeProject
         public PointF LinePixel { get; set; }
         public PointF BorderPixel { get; set; }
         //public static double AmplitudeValue { private get; set; }
-        public WaveGradient(double a, double height, PointF p, PointF border)
+        public WaveGradient(double a, double height, PointF p, PointF border, int sc)
         {
-            this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs((height / 2 - p.Y) / 5)));
+            this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs((height / 2 - p.Y) / sc)));
             this.LinePixel = p;
             this.BorderPixel = border;
         }
@@ -144,9 +147,10 @@ namespace SonotrodeProject
         public PointF LinePixel { get; set; }
         public PointF BorderPixel { get; set; }
         //public static double AmplitudeValue { private get; set; }
-        public CompstretchGradient(double a, double height, PointF p, PointF border)
+        public CompstretchGradient(double a, double height, PointF p, PointF border, int sc)
         {
-            this.PenColor = new Pen(CompstretchGradient(a, (height / 2 - p.Y) / 5));
+            this.PenColor = new Pen(CompstretchGradient(a, (height / 2 - p.Y) / sc));
+            //this.PenColor = new Pen(CompstretchGradient(a, Math.Abs((height / 2 - p.Y) / 5)));
             this.LinePixel = p;
             this.BorderPixel = border;
         }

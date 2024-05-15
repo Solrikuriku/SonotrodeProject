@@ -1,4 +1,5 @@
-﻿using SonotrodeProject;
+﻿using SharpGL.SceneGraph;
+using SonotrodeProject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,9 +51,10 @@ namespace SonotrodeProject
         public int AmplitudeElement { get; set; }
         public int AmplitudeDetail { get; set; }
         public int Frequency { get; set; }
-        public double K { get; set; }
+        //public double K { get; set; }
         public double Beta { get { return (double)AmplitudeDetail / (double)AmplitudeElement; } }
-        public double L { get { return SpeedOfSound / (2 * Frequency) * K + 3; } }
+        public double L { get { return SpeedOfSound / (2 * Frequency) * K; } }
+        public abstract double K { get; }
         public abstract double A1 { get; }
         public abstract double A2 { get; }
         public abstract double OscillationNode { get; }
@@ -73,9 +75,10 @@ namespace SonotrodeProject
         public override double D1 { get { return Math.Sqrt(Beta) * D2; } }
         public override double A1 { get { return GetArea(D1); } }
         public override double A2 { get { return GetArea(D2); } }
-        public override double OscillationNode { get { return 0.5f; } }
-        public double L1 { get { return (1.5) / (2 * (Math.PI / (L * 2))); } }
-        public double L2 { get { return (1.6) / (2 * (Math.PI / (L * 2))) + 3; } }
+        public override double OscillationNode { get { return L1/L; } }
+        public override double K { get { return 1; } }
+        public int L1 { get { return (int)((1.5) / (2 * (Math.PI / (L * 2)))); } }
+        public int L2 { get { return (int)((1.6) / (2 * (Math.PI / (L * 2))) + 3); } }
         public double GetArea(double d) { return Math.PI * ((d / 2) * (d / 2)); }
         //public double GetLength(double A) { return (0.0126667 * SpeedOfSound - 0.833333) - (A / 30); }
     }
@@ -84,18 +87,104 @@ namespace SonotrodeProject
         public override double D1 { get { return Beta * Beta * D2; } }
         public override double A1 { get { return GetArea(D1); } }
         public override double A2 { get { return GetArea(D2); } }
+        //public override double K { get { return Math.Sqrt(1 + (Math.Log(D1/D2)/Math.PI) * (Math.Log(D1 / D2) / Math.PI)) * 1.1f; } }
+        public override double K { get { return Math.Sqrt(1 + (Math.Log(D1/D2)/Math.PI) * (Math.Log(D1 / D2) / Math.PI)) * 1.1f; } }
         public override double OscillationNode { get { return 0.4f; } }
         public double I1 { get; set; }
         public double I2 { get; set; }
         public double GetArea(double d) { return Math.PI * ((d / 2) * (d / 2)); }
     }
+    //конвертация в stl
     public class ConicRectangleSonotrode : RectangleSonotrode
     {
         public override double A2 { get { return Width * Height; } }
         public override double A1 { get { return A2 * Beta * Beta; } }
+        public override double K { get { return Math.Sqrt(1 + (Math.Log(Math.Sqrt(A1 / A2)) / Math.PI) * (Math.Log(Math.Sqrt(A1 / A2)) / Math.PI)) * 1.1f; } }
         public override double OscillationNode { get { return 0.4f; } }
         public double I1 { get; set; }
         public double I2 { get; set; }
+        public double W { get { return A1 / Height;  } }
+    }
+
+    //сделать хранилище именно полигонов?
+    internal class Pixels3D
+    {
+        internal List<Vertex> d1 = new();
+        internal List<Vertex> d2 = new();
+        internal List<Vertex> d3 = new();
+        internal List<Vertex> d4 = new();
+
+        public void Initialization(StepwiseCircularSonotrode sonotrode)
+        {
+            d1.Add(new Vertex(0.0f, sonotrode.L1, -(float)sonotrode.D1 / 2));
+            d2.Add(new Vertex(0.0f, 0.0f, -(float)sonotrode.D1 / 2));
+            d3.Add(new Vertex(0.0f, 0.0f, -(float)sonotrode.D2 / 2));
+            d4.Add(new Vertex(0.0f, -sonotrode.L2, -(float)sonotrode.D2 / 2));
+
+            d1 = Calculate(d1); 
+            d2 = Calculate(d2); 
+            d3 = Calculate(d3);
+            d4 = Calculate(d4);
+        }
+
+        public void Initialization(ConicCircularSonotrode sonotrode)
+        {
+            d1.Add(new Vertex(0.0f, (float)sonotrode.L / 2, -(float)sonotrode.D1 / 2));
+            d2.Add(new Vertex(0.0f, (float)(sonotrode.L / 2 - sonotrode.I1), -(float)sonotrode.D1 / 2));
+            d3.Add(new Vertex(0.0f, -(float)(sonotrode.L / 2 - sonotrode.I2), -(float)sonotrode.D2 / 2));
+            d4.Add(new Vertex(0.0f, -(float)sonotrode.L / 2, -(float)sonotrode.D2 / 2));
+
+            d1 = Calculate(d1);
+            d2 = Calculate(d2);
+            d3 = Calculate(d3);
+            d4 = Calculate(d4);
+        }
+
+        public void Initialization(ConicRectangleSonotrode sonotrode)
+        {
+            d1.Add(new Vertex(-(float)sonotrode.W / 2, (float)sonotrode.L / 2, 0.0f));
+            d2.Add(new Vertex(-(float)sonotrode.W / 2, (float)(sonotrode.L / 2 - sonotrode.I1), 0.0f));
+            d3.Add(new Vertex(-(float)sonotrode.Width / 2, -(float)(sonotrode.L / 2 - sonotrode.I2), 0.0f));
+            d4.Add(new Vertex(-(float)sonotrode.Width / 2, -(float)sonotrode.L / 2, 0.0f));
+
+            //d1.Add(new Vertex(-1.0f, 1.0f, 0.0f));
+            //d2.Add(new Vertex(-1.0f, 0.5f, 0.0f));
+            //d3.Add(new Vertex(-0.5f, -0.5f, 0.0f));
+            //d4.Add(new Vertex(-0.5f, -1.0f, 0.0f));
+
+            d1 = Calculate(d1, (float)sonotrode.W, sonotrode.Height);
+            d2 = Calculate(d2, (float)sonotrode.W, sonotrode.Height);
+            d3 = Calculate(d3, sonotrode.Width, sonotrode.Height);
+            d4 = Calculate(d4, sonotrode.Width, sonotrode.Height);
+        }
+
+        public List<Vertex> Calculate(List<Vertex> d)
+        {
+            var a = 0.0f;
+
+            while (a < 360)
+            {
+                a += 5.625f;
+                var X = d[0].X * (float)Math.Cos(a * Math.PI / 180.0f) - d[0].Z * (float)Math.Sin(a * Math.PI / 180.0f);
+                var Z = d[0].X * (float)Math.Sin(a * Math.PI / 180.0f) + d[0].Z * (float)Math.Cos(a * Math.PI / 180.0f);
+                //a += 45;
+
+                d.Add(new Vertex(X, d[0].Y, Z));
+            } 
+
+            return d;
+        }
+
+        public static List<Vertex> Calculate(List<Vertex> d, float w, float h)
+        {
+            //w /= 25; h /= 25;
+
+            d.Add(new Vertex(d[0].X, d[0].Y, d[0].Z + h));
+            d.Add(new Vertex(d[1].X + w, d[1].Y, d[1].Z));
+            d.Add(new Vertex(d[2].X, d[2].Y, d[2].Z - h));
+
+            return d;
+        }
     }
 
     //возможно делать гет-сет для l1-l2 решение не очень хорошее
