@@ -30,8 +30,8 @@ namespace SonotrodeProject
         public double ON { private get; set; } //узел колебаний
         public double U { private get; set; } //скорость волны, равна speed of sound
         //умножение на 1000 для перевода из м в мм, на 10 000 000 - для масштабирования
-        public int T { get { return (int)Math.Round(L / U * 10000); } }
-        //public int T { get { return (int)Math.Round(L); } }
+        //public int T { get { return (int)Math.Round(L / U * 10000); } }
+        public int T { get { return (int)L; } }
         public int Center { get { return (int)Math.Round(T * ON); } }
         public double Coefficient(double area)
         {
@@ -41,6 +41,17 @@ namespace SonotrodeProject
         public double Shift(double area)
         {
             return (Math.PI * (1 - ((float)ON  / ((float)area * 2))));
+        }
+        public double ZoneCoeff(double length, double shift)
+        {
+            //берем 0.5, так как это некое стандартное значение для сдвига
+            return (Math.Asin(0)-shift)/(40000 * Math.PI * length);
+        }
+
+        public double ZoneCoeff(double length)
+        {
+            //берем 0.5, так как это некое стандартное значение для сдвига
+            return (Math.Asin(1)) / (40000 * Math.PI * length);
         }
     }
 
@@ -54,11 +65,13 @@ namespace SonotrodeProject
         //это координаты волны для отрисовки
         public double X { get; set; }
         public double Y { get; }
-        public WaveCoordinates(double a, double x, double height, int scale, double k, double coeff, double shift)
+        //public WaveCoordinates(double a, double x, double height, int scale, double k, double coeff, double shift)
+        public WaveCoordinates(double a, double x, double height, int scale, double coeff, double shift)
         {
             this.X = x;
-            WaveX = X / 10000000;
-            WaveY = a * Math.Sin(40000 * Math.PI * (WaveX / k) * coeff + shift);
+            WaveX = X;
+            //WaveY = a * Math.Sin(40000 * Math.PI * (WaveX / k) * coeff + shift);
+            WaveY = a * Math.Sin(40000 * Math.PI * WaveX * coeff + shift);
             Y = height - WaveY * scale;
         }
         //устанавливать значения можно только для X, поэтому сет только для него

@@ -258,14 +258,20 @@ namespace SonotrodeProject
         //перегрузки?
         private void MakeCurve(Sonotrode sonotrode, WaveParameters wave)
         {
+            var shift1 = wave.Shift(sonotrode.OscillationNode);
+            var shift2 = wave.Shift(1 - sonotrode.OscillationNode);
+
+
             for (int i = 0; i < wave.Center; i++)
             {
-                SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeElement, i, ProcessWave.Height / 2, ScaleCoeff, sonotrode.K, wave.Coefficient(sonotrode.OscillationNode), wave.Shift(sonotrode.OscillationNode)));
+                //SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeElement, i, ProcessWave.Height / 2, ScaleCoeff, sonotrode.K, wave.Coefficient(sonotrode.OscillationNode), wave.Shift(sonotrode.OscillationNode)));
+                SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeElement, i, ProcessWave.Height / 2, ScaleCoeff, wave.ZoneCoeff(sonotrode.L * sonotrode.OscillationNode, shift1), shift1));
                 CurveWave.Add(new PointF((float)SonotrodeWavePixels[i].X, (float)SonotrodeWavePixels[i].Y));
             }
             for (int i = wave.Center; i < wave.T; i++)
             {
-                SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeDetail, i, ProcessWave.Height / 2, ScaleCoeff, sonotrode.K, wave.Coefficient(1 - sonotrode.OscillationNode), wave.Shift(1 - sonotrode.OscillationNode)));
+                //SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeDetail, i, ProcessWave.Height / 2, ScaleCoeff, sonotrode.K, wave.Coefficient(1 - sonotrode.OscillationNode), wave.Shift(1 - sonotrode.OscillationNode)));
+                SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeDetail, i, ProcessWave.Height / 2, ScaleCoeff, wave.ZoneCoeff(sonotrode.L * (1 - sonotrode.OscillationNode)), shift2));
                 CurveWave.Add(new PointF((float)SonotrodeWavePixels[i].X, (float)SonotrodeWavePixels[i].Y));
             }
             for (int i = 0; i < wave.T; i++)
@@ -309,6 +315,8 @@ namespace SonotrodeProject
             var zoneII = (float)sonotrode.AmplitudeDetail;
             var step = ((zoneII * 2 + 1) / (zoneI * 2 + 1));
             var index = 0;
+            var shift1 = wave.Shift(sonotrode.OscillationNode);
+            var shift2 = wave.Shift(1 - sonotrode.OscillationNode);
 
             while (zoneI >= -sonotrode.AmplitudeElement)
             {
@@ -317,7 +325,8 @@ namespace SonotrodeProject
 
                 for (int i = 0; i <= wave.Center; i++)
                 {
-                    pixels1.Add(new WaveCoordinates(zoneI, i, ProcessWave.Height / 2, ScaleCoeff, sonotrode.K, wave.Coefficient(sonotrode.OscillationNode), wave.Shift(sonotrode.OscillationNode)));
+                    pixels1.Add(new WaveCoordinates(zoneI, i, ProcessWave.Height / 2, ScaleCoeff, wave.ZoneCoeff(sonotrode.L * sonotrode.OscillationNode, shift1), shift1));
+
                     //amp.Add(GetSinus(count, (double)i / 10000000));
                     //col.Add(new CompstretchGradient(sonotrode.AmplitudeDetail * 2, ProcessWave.Height, new PointF((float)pixels1[index].X, (float)pixels1[index].Y), new PointF(i, ProcessWave.Height / 2)));
                     col.Add(new CompstretchGradient(sonotrode.AmplitudeDetail, ProcessWave.Height, new PointF((float)pixels1[index].X, (float)pixels1[index].Y), new PointF(i, ProcessWave.Height / 2), ScaleCoeff));
@@ -344,7 +353,8 @@ namespace SonotrodeProject
 
                 for (int i = wave.Center; i < wave.T; i++)
                 {
-                    pixels2.Add(new WaveCoordinates(zoneII, i, ProcessWave.Height / 2, ScaleCoeff, sonotrode.K, wave.Coefficient(1 - sonotrode.OscillationNode), wave.Shift(1 - sonotrode.OscillationNode)));
+                    pixels2.Add(new WaveCoordinates(zoneII, i, ProcessWave.Height / 2, ScaleCoeff, wave.ZoneCoeff(sonotrode.L * (1 - sonotrode.OscillationNode)), shift2));
+
                     //col.Add(new CompstretchGradient(sonotrode.AmplitudeDetail * 2, ProcessWave.Height, new PointF((float)pixels2[index].X, (float)pixels2[index].Y), new PointF(i, ProcessWave.Height / 2)));
                     col.Add(new CompstretchGradient(sonotrode.AmplitudeDetail, ProcessWave.Height, new PointF((float)pixels2[index].X, (float)pixels2[index].Y), new PointF(i, ProcessWave.Height / 2), ScaleCoeff));
                     index++;
@@ -517,7 +527,7 @@ namespace SonotrodeProject
 
         private void InitMaterials()
         {
-            
+
             MaterialsTable.DataSource = null;
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(BindingList<MainMaterials>), new XmlRootAttribute("root"));
 
@@ -536,12 +546,12 @@ namespace SonotrodeProject
 
             //DataSet dataSet = new DataSet();
             //dataSet.ReadXml("DataMaterials.xml");
-            
+
         }
 
         private void DeleteMaterials_Click(object sender, EventArgs e)
         {
-            
+
             var selectedRows = MaterialsTable.SelectedRows;
             foreach (DataGridViewRow selectedRow in selectedRows)
             {
@@ -560,22 +570,22 @@ namespace SonotrodeProject
                 UpdateMaterials();
                 RefreshTable();
             }
-            
+
         }
 
         private void AddMaterial_Click(object sender, EventArgs e)
         {
-            
+
             DataMaterials.Add(new MainMaterials(MaterialName.Text, int.Parse(AmplitudeS.Text), int.Parse(AmplitudeE.Text)));
             UpdateMaterials();
             RefreshTable();
-            
+
             //MaterialsTable.DataSource = DataMaterials;
         }
 
         private void UpdateMaterials()
         {
-            
+
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(BindingList<MainMaterials>), new XmlRootAttribute("root"));
 
             var allUsersAppData = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
@@ -588,7 +598,7 @@ namespace SonotrodeProject
 
             //DataSet dataSet = new DataSet();
             //dataSet.ReadXml("DataMaterials.xml");
-            
+
 
         }
 
@@ -639,10 +649,10 @@ namespace SonotrodeProject
             info.Append("\n" + "Type: " + Type.ToString() + "\n");
             info.Append("\n" + EnabledMaterials());
         }
-        
+
         private string EnabledMaterials()
         {
-            
+
             StringBuilder materialsname = new();
             materialsname.Append("This sonotrode you can use for:" + "\n");
 
@@ -654,9 +664,9 @@ namespace SonotrodeProject
             }
 
             return materialsname.ToString();
-            
+
         }
-        
+
 
         private void OGLModel_OpenGLDraw(object sender, SharpGL.RenderEventArgs args)
         {

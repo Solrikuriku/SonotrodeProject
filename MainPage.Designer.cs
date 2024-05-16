@@ -436,7 +436,7 @@
             AddInfo.Controls.Add(AddMaterial);
             AddInfo.Controls.Add(AmplitudeS);
             AddInfo.Controls.Add(AmplitudeE);
-            AddInfo.Location = new Point(653, 17);
+            AddInfo.Location = new Point(428, 17);
             AddInfo.Name = "AddInfo";
             AddInfo.Size = new Size(424, 194);
             AddInfo.TabIndex = 5;
@@ -604,7 +604,7 @@
             ClientSize = new Size(1116, 731);
             Controls.Add(SonotrodeMenu);
             Name = "SonotrodeGenerator";
-            Text = "Вменяемое название пока не придумано";
+            Text = "Sonotrode Project";
             FormClosing += SonotrodeGenerator_FormClosing;
             Load += SonotrodeGenerator_Load;
             KeyUp += SonotrodeGenerator_KeyUp;
