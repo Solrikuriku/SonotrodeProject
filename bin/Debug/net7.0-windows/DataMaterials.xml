@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<MainMaterials>
+		<Name>Polystyrene PS</Name>
+		<AmplitudeStart>15</AmplitudeStart>
+		<AmplitudeEnd>30</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Polystyrene SB</Name>
+		<AmplitudeStart>20</AmplitudeStart>
+		<AmplitudeEnd>35</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Acrylic ABS</Name>
+		<AmplitudeStart>20</AmplitudeStart>
+		<AmplitudeEnd>30</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Styrene SAN</Name>
+		<AmplitudeStart>15</AmplitudeStart>
+		<AmplitudeEnd>30</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Polymethyl methacrylate PMMA</Name>
+		<AmplitudeStart>20</AmplitudeStart>
+		<AmplitudeEnd>35</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Polyphenylene PPO</Name>
+		<AmplitudeStart>25</AmplitudeStart>
+		<AmplitudeEnd>40</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Polycarbonate PC</Name>
+		<AmplitudeStart>25</AmplitudeStart>
+		<AmplitudeEnd>40</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Polyoxymethylene POM</Name>
+		<AmplitudeStart>40</AmplitudeStart>
+		<AmplitudeEnd>50</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Polyamide PA</Name>
+		<AmplitudeStart>35</AmplitudeStart>
+		<AmplitudeEnd>55</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Polyethylene terephthalate PETP</Name>
+		<AmplitudeStart>45</AmplitudeStart>
+		<AmplitudeEnd>55</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Polybutylene terephthalate PBTB</Name>
+		<AmplitudeStart>40</AmplitudeStart>
+		<AmplitudeEnd>50</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Cellulose derivatives</Name>
+		<AmplitudeStart>25</AmplitudeStart>
+		<AmplitudeEnd>35</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Soft PVC</Name>
+		<AmplitudeStart>20</AmplitudeStart>
+		<AmplitudeEnd>40</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Rigid PVC</Name>
+		<AmplitudeStart>25</AmplitudeStart>
+		<AmplitudeEnd>40</AmplitudeEnd>
+	</MainMaterials>
+	
+	<MainMaterials>
+		<Name>Polyethylene PE</Name>
+		<AmplitudeStart>25</AmplitudeStart>
+		<AmplitudeEnd>60</AmplitudeEnd>
+	</MainMaterials>
+
+	<MainMaterials>
+		<Name>Polypropylene PP</Name>
+		<AmplitudeStart>30</AmplitudeStart>
+		<AmplitudeEnd>60</AmplitudeEnd>
+	</MainMaterials>
+</root>

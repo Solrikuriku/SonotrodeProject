@@ -1,3 +1,4 @@
+C:\Users\1657434\Desktop\Ucheba\7 сем\ебаный диплом\ебаный код\SonotrodeProject\bin\Debug\net7.0-windows\DataMaterials.xml
 C:\Users\1657434\Desktop\Ucheba\7 сем\ебаный диплом\ебаный код\SonotrodeProject\bin\Debug\net7.0-windows\SonotrodeProject.exe
 C:\Users\1657434\Desktop\Ucheba\7 сем\ебаный диплом\ебаный код\SonotrodeProject\bin\Debug\net7.0-windows\SonotrodeProject.deps.json
 C:\Users\1657434\Desktop\Ucheba\7 сем\ебаный диплом\ебаный код\SonotrodeProject\bin\Debug\net7.0-windows\SonotrodeProject.runtimeconfig.json

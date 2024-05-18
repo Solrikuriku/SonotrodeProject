@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SonotrodeGenerator));
             SonotrodeName = new Label();
             SonotrodeType = new ComboBox();
             Amplitude = new TextBox();
@@ -396,7 +397,7 @@
             MaterialsTable.RowHeadersVisible = false;
             MaterialsTable.RowHeadersWidth = 51;
             MaterialsTable.RowTemplate.Height = 29;
-            MaterialsTable.Size = new Size(378, 645);
+            MaterialsTable.Size = new Size(567, 645);
             MaterialsTable.TabIndex = 6;
             // 
             // nameDataGridViewTextBoxColumn
@@ -436,7 +437,7 @@
             AddInfo.Controls.Add(AddMaterial);
             AddInfo.Controls.Add(AmplitudeS);
             AddInfo.Controls.Add(AmplitudeE);
-            AddInfo.Location = new Point(428, 17);
+            AddInfo.Location = new Point(632, 17);
             AddInfo.Name = "AddInfo";
             AddInfo.Size = new Size(424, 194);
             AddInfo.TabIndex = 5;
@@ -499,6 +500,7 @@
             AmplitudeS.Name = "AmplitudeS";
             AmplitudeS.Size = new Size(52, 27);
             AmplitudeS.TabIndex = 2;
+            AmplitudeS.KeyPress += AmplitudeS_KeyPress;
             // 
             // mainMaterialsBindingSource4
             // 
@@ -511,6 +513,7 @@
             AmplitudeE.Name = "AmplitudeE";
             AmplitudeE.Size = new Size(52, 27);
             AmplitudeE.TabIndex = 3;
+            AmplitudeE.KeyPress += AmplitudeE_KeyPress;
             // 
             // mainMaterialsBindingSource5
             // 
@@ -603,6 +606,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1116, 731);
             Controls.Add(SonotrodeMenu);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "SonotrodeGenerator";
             Text = "Sonotrode Project";
             FormClosing += SonotrodeGenerator_FormClosing;

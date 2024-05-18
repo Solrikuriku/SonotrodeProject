@@ -532,8 +532,13 @@ namespace SonotrodeProject
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(BindingList<MainMaterials>), new XmlRootAttribute("root"));
 
             //string dataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            var allUsersAppData = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            var path = Path.Combine(allUsersAppData, @"DataMaterials.xml");
+            var allUsersAppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var path = Path.Combine(allUsersAppData, @"SonotrodeData\DataMaterials.xml");
+
+            //var path = Path.GetFullPath("DataMaterials.xml");
+            //string fileName = @"DataMaterials.xml";
+            //FileInfo f = new FileInfo(fileName);
+            //string path = f.FullName;
 
             using (FileStream fs = new FileStream(path, FileMode.Open))
             {
@@ -575,10 +580,16 @@ namespace SonotrodeProject
 
         private void AddMaterial_Click(object sender, EventArgs e)
         {
-
-            DataMaterials.Add(new MainMaterials(MaterialName.Text, int.Parse(AmplitudeS.Text), int.Parse(AmplitudeE.Text)));
-            UpdateMaterials();
-            RefreshTable();
+            if (string.IsNullOrEmpty(AmplitudeS.Text) || string.IsNullOrEmpty(AmplitudeE.Text) || string.IsNullOrEmpty(MaterialName.Text))
+                MessageBox.Show("Empty values!");
+            else if (int.Parse(AmplitudeS.Text) < int.Parse(AmplitudeE.Text))
+            {
+                DataMaterials.Add(new MainMaterials(MaterialName.Text, int.Parse(AmplitudeS.Text), int.Parse(AmplitudeE.Text)));
+                UpdateMaterials();
+                RefreshTable();
+            }
+            else
+                MessageBox.Show("Start amplitude can't be more than end amplitude.");
 
             //MaterialsTable.DataSource = DataMaterials;
         }
@@ -588,8 +599,13 @@ namespace SonotrodeProject
 
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(BindingList<MainMaterials>), new XmlRootAttribute("root"));
 
-            var allUsersAppData = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            var path = Path.Combine(allUsersAppData, @"DataMaterials.xml");
+            var allUsersAppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var path = Path.Combine(allUsersAppData, @"SonotrodeData\DataMaterials.xml");
+
+            //var path = Path.GetFullPath("DataMaterials.xml");
+            //string fileName = @"DataMaterials.xml";
+            //FileInfo f = new FileInfo(fileName);
+            //string path = f.FullName;
 
             using (FileStream fs = new FileStream(path, FileMode.Create))
             {
@@ -1203,6 +1219,22 @@ namespace SonotrodeProject
         {
             //cts.Cancel();
             //OnToken();
+        }
+
+        private void AmplitudeS_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void AmplitudeE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         //class GraphicThings
