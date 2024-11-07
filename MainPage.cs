@@ -76,12 +76,6 @@ namespace SonotrodeProject
 
         private BindingList<MainMaterials> DataMaterials = new();
 
-        //Pixels3D aaa = new Pixels3D();
-
-        //internal Sonotrode sonotrodetest;
-        //private readonly List<CompstretchGradient> CompstretchWave = new();
-        //ÈÑÏÐÀÂÈÒÜ????
-        //private readonly List<List<PointF>> AnimationGradientWave = new();
         internal SonotrodeTypes Type;
         internal SonotrodeStatus Status;
         internal enum SonotrodeTypes
@@ -117,10 +111,6 @@ namespace SonotrodeProject
             }
         }
 
-        //private static double AluminiumLength()
-        //{
-        //    return 20f;
-        //}
         private void ClearAll()
         {
             SonotrodeWavePixels.Clear();
@@ -140,8 +130,6 @@ namespace SonotrodeProject
         {
             var isSizeBig = false;
             var amplitude = int.Parse(Amplitude.Text);
-            //var myBitmap = new Bitmap(ProcessWave.Width, ProcessWave.Height);
-            //var g = Graphics.FromImage(myBitmap);
 
             if (!CheckAmplitude(amplitude))
             {
@@ -151,10 +139,7 @@ namespace SonotrodeProject
             {
                 ClearAll();
 
-                //CalcSonotrode.Dispose();
                 Status = SonotrodeStatus.Make;
-                //MakeWave.Enabled = true;
-                //cts.Cancel();
 
                 if (Type == SonotrodeTypes.StepwiseCircular)
                 {
@@ -209,7 +194,7 @@ namespace SonotrodeProject
                     };
 
                     Sonotrode3DModel.Initialization((ConicRectangleSonotrode)CalcSonotrode);
-                    isSizeBig = TestSize(((ConicRectangleSonotrode)CalcSonotrode).Width, ((ConicRectangleSonotrode)CalcSonotrode).H);
+                    isSizeBig = TestSize(((ConicRectangleSonotrode)CalcSonotrode).W, ((ConicRectangleSonotrode)CalcSonotrode).Height);
                 }
 
                 var sonotrodeWave = new WaveParameters()
@@ -225,13 +210,8 @@ namespace SonotrodeProject
                 MaterialDescription.Text = EnabledMaterials();
 
                 SaveSonotrodeInfo.Enabled = true;
-                //StressWave.Checked = true;
-                //cts.Cancel();
+
                 OnToken();
-                //richTextBox1.AppendText(ColorsZoneFirst[0].Count.ToString() + "\n");
-                //richTextBox1.AppendText(AnimationWavePixels1[0].Count.ToString() + "\n");
-                //richTextBox1.AppendText(CalcSonotrode.OscillationNode.ToString() + "\n");
-                //ãåíåðèòü òóò?
 
                 if (isSizeBig)
                     MessageBox.Show("WARNING! This sonotrode is big enough. You have to consider transverse waves!");

@@ -29,25 +29,12 @@ namespace SonotrodeProject
         internal double L { private get; set; } //длина волны - длина сонотрода
         internal double ON { private get; set; } //узел колебаний
         internal double U { private get; set; } //скорость волны, равна speed of sound
-        //умножение на 1000 для перевода из м в мм, на 10 000 000 - для масштабирования
-        //public int T { get { return (int)Math.Round(L / U * 10000); } }
         internal int T { get { return (int)L; } }
         internal int Center { get { return (int)Math.Round(T * ON); } }
-        //public double Coefficient(double area)
-        //{
-        //    //берем 0.5, так как это некое стандартное значение для сдвига
-        //    return 0.5 / area;
-        //}
         internal double Shift(double area)
         {
             return (Math.PI * (1 - ((float)ON  / ((float)area * 2))));
-            //return (Math.PI / 2) * (area / ON);
         }
-        //public double ZoneCoeff(double length, double shift)
-        //{
-        //    //берем 0.5, так как это некое стандартное значение для сдвига
-        //    return (Math.Asin(0) - shift) / (40000 * Math.PI * length);
-        //}
 
         internal double ZoneCoeff(double length)
         {
@@ -104,33 +91,13 @@ namespace SonotrodeProject
         }
         internal static Color AmplitudeGradient(double a, double curA)
         {
-            //var step = a / 4;
-
             var hue = ((curA - a) / (- a)) * 240;
-            //double hue = 0;
-
-            //if (0 <= curA && curA <= step)
-            //    hue = GetHue(240, 180, 0, step, curA);
-            //else if (step < curA && curA <= 2 * step)
-            //    hue = GetHue(180, 120, step, step * 2, curA);
-            //else if (2 * step < curA && curA <= 3 * step)
-            //    hue = GetHue(120, 60, step * 2, step * 3, curA);
-            //else if (3 * step < curA && curA <= 4 * step)
-            //    hue = GetHue(60, 0, step * 3, step * 4, curA);
 
             return HSVtoRGB(hue);
         }
         internal static Color CompstretchGradient(double a, double curA)
         {
-            //var step = a / 2;
-            //double hue = 0;
-
             var hue = ((curA + a) / (2 * a)) * 120 + 240;
-
-            //if (-step <= curA && curA <= 0)
-            //    hue = GetHue(240, 300, -step, 0, curA);
-            //else if (0 < curA && curA <= step)
-            //    hue = GetHue(300, 360, 0, step, curA);
 
             return HSVtoRGB(hue);
         }
