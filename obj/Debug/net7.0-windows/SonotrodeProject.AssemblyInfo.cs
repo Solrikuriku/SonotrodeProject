@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SonotrodeProject")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c5f7f040d5370aa362bbcb2bb8af179402543c6b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f5871bbf0880b4f0dce85f2b217ed19369280c2")]
 [assembly: System.Reflection.AssemblyProductAttribute("SonotrodeProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SonotrodeProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

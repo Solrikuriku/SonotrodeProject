@@ -18,17 +18,5 @@ namespace SonotrodeProject
             AmplitudeStart = aStart;
             AmplitudeEnd = aEnd;
         }
-
-        /*
-         * public override string ToString()
-        {
-            return "\tMainMaterials@" + GetHashCode() + "{\r\n" +
-                "\t\tName: " + Name + "\r\n" +
-                "\t\tAmplitudeStart: " + AmplitudeStart + "\r\n" +
-                "\t\tAmplitudeEnd: " + AmplitudeEnd + "\r\n" +
-                "\t}";
-
-        }
-        */
     }
 }

@@ -105,7 +105,6 @@ namespace SonotrodeProject
         public override double OscillationNode { get { return 0.4f; } }
         public double I1 { get; set; }
         public double I2 { get; set; }
-        //public double W { get { return A1 / Height;  } }
     }
 
     //сделать хранилище именно полигонов?
@@ -149,11 +148,6 @@ namespace SonotrodeProject
             d3.Add(new Vertex(-(float)sonotrode.Width / 2, -(float)(sonotrode.L / 2 - sonotrode.I2), 0.0f));
             d4.Add(new Vertex(-(float)sonotrode.Width / 2, -(float)sonotrode.L / 2, 0.0f));
 
-            //d1.Add(new Vertex(-1.0f, 1.0f, 0.0f));
-            //d2.Add(new Vertex(-1.0f, 0.5f, 0.0f));
-            //d3.Add(new Vertex(-0.5f, -0.5f, 0.0f));
-            //d4.Add(new Vertex(-0.5f, -1.0f, 0.0f));
-
             d1 = Calculate(d1, (float)sonotrode.W, (float)sonotrode.Height);
             d2 = Calculate(d2, (float)sonotrode.W, (float)sonotrode.Height);
             d3 = Calculate(d3, (float)sonotrode.Width, (float)sonotrode.Height);
@@ -167,8 +161,6 @@ namespace SonotrodeProject
             while (a < 360)
             {
                 a += 5.625f;
-                //var X = d[0].X * (float)Math.Cos(a * Math.PI / 180.0f) - d[0].Z * (float)Math.Sin(a * Math.PI / 180.0f);
-                //var Z = d[0].X * (float)Math.Sin(a * Math.PI / 180.0f) + d[0].Z * (float)Math.Cos(a * Math.PI / 180.0f);
                 var X =  - (d[0].Z * (float)Math.Sin(a * Math.PI / 180.0f));
                 var Z =  d[0].Z * (float)Math.Cos(a * Math.PI / 180.0f);
                 //a += 45;

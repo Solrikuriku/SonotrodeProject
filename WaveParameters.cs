@@ -136,27 +136,14 @@ namespace SonotrodeProject
         }
     }
 
-    //ну и пиздец...
-    //ктож так код пишет
-    //как же хочется пивка..........
-
-    //wavegradient сделать как интерфейс-виртуальный класс
     internal class WaveGradient : ColorManipulation
     {
         internal Pen PenColor { get; }
         internal PointF LinePixel { get; }
         internal PointF BorderPixel { get; }
-        //public static double AmplitudeValue { private get; set; }
-        //internal WaveGradient(double a, double height, PointF l, PointF p, PointF border, int sc)
-        //{
-        //    //this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs((height / 2 - p.Y) / sc)));
-        //    this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs(p.Y)));
-        //    this.LinePixel = l;
-        //    this.BorderPixel = border;
-        //}
+
         internal WaveGradient(double a, PointF l, double curY, PointF border)
         {
-            //this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs((height / 2 - p.Y) / sc)));
             this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs(curY)));
             this.LinePixel = l;
             this.BorderPixel = border;
@@ -167,11 +154,9 @@ namespace SonotrodeProject
         internal Pen PenColor { get; set; }
         internal PointF LinePixel { get; set; }
         internal PointF BorderPixel { get; set; }
-        //public static double AmplitudeValue { private get; set; }
         internal CompstretchGradient(double a, double height, PointF p, PointF border, int sc)
         {
             this.PenColor = new Pen(CompstretchGradient(a, (height / 2 - p.Y) / sc));
-            //this.PenColor = new Pen(CompstretchGradient(a, Math.Abs((height / 2 - p.Y) / 5)));
             this.LinePixel = p;
             this.BorderPixel = border;
         }

@@ -3,24 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\mainmaterials.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:mainmaterials.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\waveparameters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:waveparameters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\sonotrodes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:sonotrodes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\waveparameters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:waveparameters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\mainmaterials.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:mainmaterials.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\mainpage.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:mainpage.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\datamaterials.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:datamaterials.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\properties\\datasources\\mainmaterials.datasource||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:properties\\datasources\\mainmaterials.datasource||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|c:\\users\\1657434\\desktop\\\u0443\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\sonotrodeproject\\mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19122884-B06E-49B7-AB09-5BE5EBF0F95E}|SonotrodeProject.csproj|solutionrelative:mainpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,8 +46,38 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-07T20:50:51.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MainPage.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainPage.Designer.cs",
+              "RelativeDocumentMoniker": "MainPage.Designer.cs",
+              "ToolTip": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainPage.Designer.cs",
+              "RelativeToolTip": "MainPage.Designer.cs",
+              "ViewState": "AgIAAKkCAAAAAAAAAAAQwAMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-07T20:46:02.586Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
@@ -46,13 +92,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "MainMaterials.cs",
               "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainMaterials.cs",
               "RelativeDocumentMoniker": "MainMaterials.cs",
               "ToolTip": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainMaterials.cs",
               "RelativeToolTip": "MainMaterials.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAsAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-23T21:14:25.113Z",
               "EditorCaption": ""
@@ -65,14 +111,65 @@
               "RelativeDocumentMoniker": "Sonotrodes.cs",
               "ToolTip": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\Sonotrodes.cs",
               "RelativeToolTip": "Sonotrodes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAK4AAAAAAAAAAAAuwKIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-23T21:11:08.436Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "WaveParameters.cs",
+              "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\WaveParameters.cs",
+              "RelativeDocumentMoniker": "WaveParameters.cs",
+              "ToolTip": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\WaveParameters.cs",
+              "RelativeToolTip": "WaveParameters.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T21:11:11.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DataMaterials.xml",
+              "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\DataMaterials.xml",
+              "RelativeDocumentMoniker": "DataMaterials.xml",
+              "ToolTip": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\DataMaterials.xml",
+              "RelativeToolTip": "DataMaterials.xml",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAFIAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2024-11-07T20:44:28.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainMaterials.datasource",
+              "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\Properties\\DataSources\\MainMaterials.datasource",
+              "RelativeDocumentMoniker": "Properties\\DataSources\\MainMaterials.datasource",
+              "ToolTip": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\Properties\\DataSources\\MainMaterials.datasource",
+              "RelativeToolTip": "Properties\\DataSources\\MainMaterials.datasource",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2024-11-07T20:44:06.92Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainPage.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainPage.cs",
+              "RelativeDocumentMoniker": "MainPage.cs",
+              "ToolTip": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainPage.cs [Design]",
+              "RelativeToolTip": "MainPage.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-23T21:11:11.545Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "MainPage.cs",
               "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainPage.cs",
               "RelativeDocumentMoniker": "MainPage.cs",
@@ -82,30 +179,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-23T21:11:08.73Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WaveParameters.cs",
-              "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\WaveParameters.cs",
-              "RelativeDocumentMoniker": "WaveParameters.cs",
-              "ToolTip": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\WaveParameters.cs",
-              "RelativeToolTip": "WaveParameters.cs",
-              "ViewState": "AgIAAI4AAAAAAAAAAAAQwJUAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T21:11:11.557Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MainPage.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\1657434\\Desktop\\\u0423\u0447\u0435\u0431\u043D\u043E\u0435-\u0445\u0443\u0435\u0431\u043D\u043E\u0435\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainPage.cs",
-              "RelativeDocumentMoniker": "MainPage.cs",
-              "ToolTip": "C:\\Users\\1657434\\Desktop\\Ucheba\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainPage.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\Ucheba\\7 \u0441\u0435\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u0434\u0438\u043F\u043B\u043E\u043C\\\u0435\u0431\u0430\u043D\u044B\u0439 \u043A\u043E\u0434\\SonotrodeProject\\MainPage.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003525|",
-              "WhenOpened": "2024-10-23T21:11:11.545Z"
             }
           ]
         }
