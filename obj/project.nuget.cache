@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YXzfVr1CCGLmFzqUjPVQQcWt9rH3Oiq8sDfqv8YXUOqFKolNTYKIwn7FVS1bcU65szpVsGttXzYrA9dQW86+Bw==",
+  "dgSpecHash": "LoAFUhMguvw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\1657434\\Desktop\\Ucheba\\7 сем\\ебаный диплом\\ебаный код\\SonotrodeProject\\SonotrodeProject.csproj",
+  "projectFilePath": "C:\\Users\\1657434\\Desktop\\Учебное-хуебное\\7 сем\\ебаный диплом\\ебаный код\\SonotrodeProject\\SonotrodeProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1657434\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\1657434\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -2610,11 +2610,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\1657434\\Desktop\\Ucheba\\7 сем\\ебаный диплом\\ебаный код\\SonotrodeProject\\SonotrodeProject.csproj",
+      "projectUniqueName": "C:\\Users\\1657434\\Desktop\\Учебное-хуебное\\7 сем\\ебаный диплом\\ебаный код\\SonotrodeProject\\SonotrodeProject.csproj",
       "projectName": "SonotrodeProject",
-      "projectPath": "C:\\Users\\1657434\\Desktop\\Ucheba\\7 сем\\ебаный диплом\\ебаный код\\SonotrodeProject\\SonotrodeProject.csproj",
+      "projectPath": "C:\\Users\\1657434\\Desktop\\Учебное-хуебное\\7 сем\\ебаный диплом\\ебаный код\\SonotrodeProject\\SonotrodeProject.csproj",
       "packagesPath": "C:\\Users\\1657434\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\1657434\\Desktop\\Ucheba\\7 сем\\ебаный диплом\\ебаный код\\SonotrodeProject\\obj\\",
+      "outputPath": "C:\\Users\\1657434\\Desktop\\Учебное-хуебное\\7 сем\\ебаный диплом\\ебаный код\\SonotrodeProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2629,6 +2629,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2641,6 +2642,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2687,7 +2693,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

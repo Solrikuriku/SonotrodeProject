@@ -53,6 +53,10 @@ namespace SonotrodeProject
             StressWave.Checked = true;
 
             SonotrodeType.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            MaterialsTable.Columns[0].ReadOnly = true;
+            MaterialsTable.Columns[1].ReadOnly = true;
+            MaterialsTable.Columns[2].ReadOnly = true;
         }
 
         private readonly List<WaveCoordinates> SonotrodeWavePixels = new();
@@ -66,7 +70,7 @@ namespace SonotrodeProject
         private readonly List<WaveGradient> GradientWave = new();
 
         private Sonotrode CalcSonotrode;
-        private Pixels3D Sonotrode3DModel = new();
+        private Carcas3D Sonotrode3DModel = new();
 
         private int ScaleCoeff = 4;
 
@@ -182,7 +186,7 @@ namespace SonotrodeProject
                         Frequency = 20,
                         D2 = double.Parse(Diameter.Text),
                         I1 = 10,
-                        I2 = 10
+                        I2 = 15
                     };
 
                     Sonotrode3DModel.Initialization((ConicCircularSonotrode)CalcSonotrode);
@@ -201,11 +205,11 @@ namespace SonotrodeProject
                         //исходное
                         Frequency = 20,
                         I1 = 10,
-                        I2 = 10
+                        I2 = 15
                     };
 
                     Sonotrode3DModel.Initialization((ConicRectangleSonotrode)CalcSonotrode);
-                    isSizeBig = TestSize(((ConicRectangleSonotrode)CalcSonotrode).W, ((ConicRectangleSonotrode)CalcSonotrode).Height);
+                    isSizeBig = TestSize(((ConicRectangleSonotrode)CalcSonotrode).Width, ((ConicRectangleSonotrode)CalcSonotrode).H);
                 }
 
                 var sonotrodeWave = new WaveParameters()
@@ -265,7 +269,7 @@ namespace SonotrodeProject
             for (int i = 0; i < wave.Center; i++)
             {
                 //SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeElement, i, ProcessWave.Height / 2, ScaleCoeff, sonotrode.K, wave.Coefficient(sonotrode.OscillationNode), wave.Shift(sonotrode.OscillationNode)));
-                SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeElement, i, ProcessWave.Height / 2, ScaleCoeff, wave.ZoneCoeff(sonotrode.L * sonotrode.OscillationNode, shift1), shift1));
+                SonotrodeWavePixels.Add(new WaveCoordinates(sonotrode.AmplitudeElement, i, ProcessWave.Height / 2, ScaleCoeff, wave.ZoneCoeff(sonotrode.L * sonotrode.OscillationNode), shift1));
                 CurveWave.Add(new PointF((float)SonotrodeWavePixels[i].X, (float)SonotrodeWavePixels[i].Y));
             }
             for (int i = wave.Center; i < wave.T; i++)
@@ -276,7 +280,8 @@ namespace SonotrodeProject
             }
             for (int i = 0; i < wave.T; i++)
             {
-                GradientWave.Add(new WaveGradient(sonotrode.AmplitudeDetail, ProcessWave.Height, CurveWave[i], new PointF(i, ProcessWave.Height / 2), ScaleCoeff));
+                //GradientWave.Add(new WaveGradient(sonotrode.AmplitudeDetail, ProcessWave.Height, CurveWave[i], new PointF(i, ProcessWave.Height / 2), ScaleCoeff));
+                GradientWave.Add(new WaveGradient(sonotrode.AmplitudeDetail, CurveWave[i], SonotrodeWavePixels[i].WaveY, new PointF(i, ProcessWave.Height / 2)));
             }
         }
         //господи какая же я мудень криворукая
@@ -295,6 +300,8 @@ namespace SonotrodeProject
             }
             else if (Type == SonotrodeTypes.ConicCircular)
             {
+                description.AppendLine("D1: " + ((ConicCircularSonotrode)sonotrode).D1.ToString());
+                description.AppendLine("D2: " + ((ConicCircularSonotrode)sonotrode).D2.ToString());
                 description.AppendLine("I1: " + ((ConicCircularSonotrode)sonotrode).I1.ToString());
                 description.AppendLine("I2: " + ((ConicCircularSonotrode)sonotrode).I2.ToString());
             }
@@ -313,7 +320,8 @@ namespace SonotrodeProject
         {
             var zoneI = (float)sonotrode.AmplitudeElement;
             var zoneII = (float)sonotrode.AmplitudeDetail;
-            var step = ((zoneII * 2 + 1) / (zoneI * 2 + 1));
+            //var step = ((zoneII * 2 + 1) / (zoneI * 2 + 1));
+            var step = ((zoneII) / (zoneI));
             var index = 0;
             var shift1 = wave.Shift(sonotrode.OscillationNode);
             var shift2 = wave.Shift(1 - sonotrode.OscillationNode);
@@ -325,7 +333,7 @@ namespace SonotrodeProject
 
                 for (int i = 0; i <= wave.Center; i++)
                 {
-                    pixels1.Add(new WaveCoordinates(zoneI, i, ProcessWave.Height / 2, ScaleCoeff, wave.ZoneCoeff(sonotrode.L * sonotrode.OscillationNode, shift1), shift1));
+                    pixels1.Add(new WaveCoordinates(zoneI, i, ProcessWave.Height / 2, ScaleCoeff, wave.ZoneCoeff(sonotrode.L * sonotrode.OscillationNode), shift1));
 
                     //amp.Add(GetSinus(count, (double)i / 10000000));
                     //col.Add(new CompstretchGradient(sonotrode.AmplitudeDetail * 2, ProcessWave.Height, new PointF((float)pixels1[index].X, (float)pixels1[index].Y), new PointF(i, ProcessWave.Height / 2)));
@@ -414,8 +422,8 @@ namespace SonotrodeProject
         //bool flag = false;
         async void OnToken()
         {
-            var myBitmap = new Bitmap(ProcessWave.Width, ProcessWave.Height);
-            var g = Graphics.FromImage(myBitmap);
+            //var myBitmap = new Bitmap(ProcessWave.Width, ProcessWave.Height);
+            //var g = Graphics.FromImage(myBitmap);
 
             ProcessWave.Focus();
             cts.Cancel();
@@ -527,7 +535,6 @@ namespace SonotrodeProject
 
         private void InitMaterials()
         {
-
             MaterialsTable.DataSource = null;
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(BindingList<MainMaterials>), new XmlRootAttribute("root"));
 
@@ -702,6 +709,8 @@ namespace SonotrodeProject
 
         private void RectangleRender(OpenGL gl)
         {
+            var scaleRender = 25;
+
             gl.PolygonMode(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_LINES);
 
             gl.LoadIdentity();
@@ -710,39 +719,38 @@ namespace SonotrodeProject
             gl.Color(0.0f, 1.0f, 0.0f);
 
             gl.Begin(OpenGL.GL_LINE_LOOP);
-            //gl.Color(0.0f, 1.0f, 0.0f);
 
-            gl.Vertex(Sonotrode3DModel.d1[0] / 25);
-            gl.Vertex(Sonotrode3DModel.d1[1] / 25);
-            gl.Vertex(Sonotrode3DModel.d1[2] / 25);
-            gl.Vertex(Sonotrode3DModel.d1[3] / 25);
-
-            gl.End();
-
-            gl.Begin(OpenGL.GL_LINE_LOOP);
-
-            gl.Vertex(Sonotrode3DModel.d2[0] / 25);
-            gl.Vertex(Sonotrode3DModel.d2[1] / 25);
-            gl.Vertex(Sonotrode3DModel.d2[2] / 25);
-            gl.Vertex(Sonotrode3DModel.d2[3] / 25);
+            gl.Vertex(Sonotrode3DModel.d1[0] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d1[1] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d1[2] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d1[3] / scaleRender);
 
             gl.End();
 
             gl.Begin(OpenGL.GL_LINE_LOOP);
 
-            gl.Vertex(Sonotrode3DModel.d3[0] / 25);
-            gl.Vertex(Sonotrode3DModel.d3[1] / 25);
-            gl.Vertex(Sonotrode3DModel.d3[2] / 25);
-            gl.Vertex(Sonotrode3DModel.d3[3] / 25);
+            gl.Vertex(Sonotrode3DModel.d2[0] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d2[1] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d2[2] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d2[3] / scaleRender);
 
             gl.End();
 
             gl.Begin(OpenGL.GL_LINE_LOOP);
 
-            gl.Vertex(Sonotrode3DModel.d4[0] / 25);
-            gl.Vertex(Sonotrode3DModel.d4[1] / 25);
-            gl.Vertex(Sonotrode3DModel.d4[2] / 25);
-            gl.Vertex(Sonotrode3DModel.d4[3] / 25);
+            gl.Vertex(Sonotrode3DModel.d3[0] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d3[1] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d3[2] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d3[3] / scaleRender);
+
+            gl.End();
+
+            gl.Begin(OpenGL.GL_LINE_LOOP);
+
+            gl.Vertex(Sonotrode3DModel.d4[0] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d4[1] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d4[2] / scaleRender);
+            gl.Vertex(Sonotrode3DModel.d4[3] / scaleRender);
 
             gl.End();
 
@@ -750,24 +758,25 @@ namespace SonotrodeProject
 
             for (int i = 0; i <= 3; i++)
             {
-                gl.Vertex(Sonotrode3DModel.d1[i] / 25);
-                gl.Vertex(Sonotrode3DModel.d2[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d1[i] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d2[i] / scaleRender);
 
-                gl.Vertex(Sonotrode3DModel.d2[i] / 25);
-                gl.Vertex(Sonotrode3DModel.d3[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d2[i] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d3[i] / scaleRender);
 
-                gl.Vertex(Sonotrode3DModel.d3[i] / 25);
-                gl.Vertex(Sonotrode3DModel.d4[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d3[i] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d4[i] / scaleRender);
             }
 
             gl.End();
-
             gl.Flush();
         }
 
         private void CircularRender(OpenGL gl)
         {
             //gl.PolygonMode(OpenGL.GL_FRONT_AND_BACK, OpenGL.GL_LINE_LOOP);
+            var scaleRender = 25;
+            var polygons = 64;
 
             gl.LoadIdentity();
             gl.Translate(0f, 0.0f, ScaleZ);
@@ -775,44 +784,43 @@ namespace SonotrodeProject
             gl.Begin(OpenGL.GL_LINES);
             gl.Color(0.0f, 1.0f, 0.0f);
 
-            for (int i = 1; i <= 64; i++)
+            for (int i = 1; i <= polygons; i++)
             {
-                gl.Vertex(Sonotrode3DModel.d1[i - 1] / 25);
-                gl.Vertex(Sonotrode3DModel.d1[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d1[i - 1] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d1[i] / scaleRender);
 
-                gl.Vertex(Sonotrode3DModel.d2[i - 1] / 25);
-                gl.Vertex(Sonotrode3DModel.d2[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d2[i - 1] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d2[i] / scaleRender);
 
-                gl.Vertex(Sonotrode3DModel.d3[i - 1] / 25);
-                gl.Vertex(Sonotrode3DModel.d3[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d3[i - 1] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d3[i] / scaleRender);
 
-                gl.Vertex(Sonotrode3DModel.d4[i - 1] / 25);
-                gl.Vertex(Sonotrode3DModel.d4[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d4[i - 1] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d4[i] / scaleRender);
             }
 
-            for (int i = 0; i < 64; i++)
+            for (int i = 0; i < polygons; i++)
             {
-                gl.Vertex(Sonotrode3DModel.d1[0].X / 25, Sonotrode3DModel.d1[0].Y / 25, 0.0f);
-                gl.Vertex(Sonotrode3DModel.d1[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d1[0].X / scaleRender, Sonotrode3DModel.d1[0].Y / scaleRender, 0.0f);
+                gl.Vertex(Sonotrode3DModel.d1[i] / scaleRender);
 
-                gl.Vertex(Sonotrode3DModel.d4[0].X / 25, Sonotrode3DModel.d4[0].Y / 25, 0.0f);
-                gl.Vertex(Sonotrode3DModel.d4[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d4[0].X / scaleRender, Sonotrode3DModel.d4[0].Y / scaleRender, 0.0f);
+                gl.Vertex(Sonotrode3DModel.d4[i] / scaleRender);
             }
 
-            for (int i = 0; i < 64; i++)
+            for (int i = 0; i < polygons; i++)
             {
-                gl.Vertex(Sonotrode3DModel.d1[i] / 25);
-                gl.Vertex(Sonotrode3DModel.d2[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d1[i] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d2[i] / scaleRender);
 
-                gl.Vertex(Sonotrode3DModel.d2[i] / 25);
-                gl.Vertex(Sonotrode3DModel.d3[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d2[i] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d3[i] / scaleRender);
 
-                gl.Vertex(Sonotrode3DModel.d3[i] / 25);
-                gl.Vertex(Sonotrode3DModel.d4[i] / 25);
+                gl.Vertex(Sonotrode3DModel.d3[i] / scaleRender);
+                gl.Vertex(Sonotrode3DModel.d4[i] / scaleRender);
             }
 
             gl.End();
-
             gl.Flush();
         }
 
@@ -986,7 +994,7 @@ namespace SonotrodeProject
                     AngleY += 15.0f;
                     break;
                 case Keys.Right:
-                    AngleY += 15.0f;
+                    AngleY -= 15.0f;
                     break;
                 case Keys.Z:
                     AngleZ += 15.0f;
@@ -1042,8 +1050,8 @@ namespace SonotrodeProject
             {
                 if (Type != SonotrodeTypes.ConicRectangle)
                     parameters = MakeCircularSTL();
-                //else
-                //    parameters = MakeRectangleOBJ();
+                else
+                    parameters = MakeRectangleSTL();
 
                 var fileName = SaveSTL.FileName;
                 File.WriteAllText(fileName, parameters.ToString());
@@ -1235,6 +1243,158 @@ namespace SonotrodeProject
             {
                 e.Handled = true;
             }
+        }
+
+        private string MakeRectangleSTL()
+        {
+            StringBuilder stlLines = new();
+
+            stlLines.AppendLine("solid Pizdec");
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[0].X + " " + Sonotrode3DModel.d1[0].Y + " " + Sonotrode3DModel.d1[0].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[1].X + " " + Sonotrode3DModel.d1[1].Y + " " + Sonotrode3DModel.d1[1].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[2].X + " " + Sonotrode3DModel.d1[2].Y + " " + Sonotrode3DModel.d1[2].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[0].X + " " + Sonotrode3DModel.d1[0].Y + " " + Sonotrode3DModel.d1[0].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[2].X + " " + Sonotrode3DModel.d1[2].Y + " " + Sonotrode3DModel.d1[2].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[3].X + " " + Sonotrode3DModel.d1[3].Y + " " + Sonotrode3DModel.d1[3].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+            for (int i = 1; i <= Sonotrode3DModel.d1.Count - 1; i++)
+            {
+                stlLines.AppendLine("facet normal 0 0 0");
+                stlLines.AppendLine("outer loop");
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[i].X + " " + Sonotrode3DModel.d1[i].Y + " " + Sonotrode3DModel.d1[i].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[i - 1].X + " " + Sonotrode3DModel.d1[i - 1].Y + " " + Sonotrode3DModel.d1[i - 1].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[i - 1].X + " " + Sonotrode3DModel.d2[i - 1].Y + " " + Sonotrode3DModel.d2[i - 1].Z);
+                stlLines.AppendLine("endloop");
+                stlLines.AppendLine("endfacet");
+
+                stlLines.AppendLine("facet normal 0 0 0");
+                stlLines.AppendLine("outer loop");
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[i].X + " " + Sonotrode3DModel.d1[i].Y + " " + Sonotrode3DModel.d1[i].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[i].X + " " + Sonotrode3DModel.d2[i].Y + " " + Sonotrode3DModel.d2[i].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[i - 1].X + " " + Sonotrode3DModel.d2[i - 1].Y + " " + Sonotrode3DModel.d2[i - 1].Z);
+                stlLines.AppendLine("endloop");
+                stlLines.AppendLine("endfacet");
+            }
+
+            for (int i = 1; i <= Sonotrode3DModel.d2.Count - 1; i++)
+            {
+                stlLines.AppendLine("facet normal 0 0 0");
+                stlLines.AppendLine("outer loop");
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[i].X + " " + Sonotrode3DModel.d2[i].Y + " " + Sonotrode3DModel.d2[i].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[i - 1].X + " " + Sonotrode3DModel.d2[i - 1].Y + " " + Sonotrode3DModel.d2[i - 1].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[i - 1].X + " " + Sonotrode3DModel.d3[i - 1].Y + " " + Sonotrode3DModel.d3[i - 1].Z);
+                stlLines.AppendLine("endloop");
+                stlLines.AppendLine("endfacet");
+
+                stlLines.AppendLine("facet normal 0 0 0");
+                stlLines.AppendLine("outer loop");
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[i].X + " " + Sonotrode3DModel.d2[i].Y + " " + Sonotrode3DModel.d2[i].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[i].X + " " + Sonotrode3DModel.d3[i].Y + " " + Sonotrode3DModel.d3[i].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[i - 1].X + " " + Sonotrode3DModel.d3[i - 1].Y + " " + Sonotrode3DModel.d3[i - 1].Z);
+                stlLines.AppendLine("endloop");
+                stlLines.AppendLine("endfacet");
+            }
+
+            for (int i = 1; i <= Sonotrode3DModel.d3.Count - 1; i++)
+            {
+                stlLines.AppendLine("facet normal 0 0 0");
+                stlLines.AppendLine("outer loop");
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[i].X + " " + Sonotrode3DModel.d3[i].Y + " " + Sonotrode3DModel.d3[i].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[i - 1].X + " " + Sonotrode3DModel.d3[i - 1].Y + " " + Sonotrode3DModel.d3[i - 1].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[i - 1].X + " " + Sonotrode3DModel.d4[i - 1].Y + " " + Sonotrode3DModel.d4[i - 1].Z);
+                stlLines.AppendLine("endloop");
+                stlLines.AppendLine("endfacet");
+
+                stlLines.AppendLine("facet normal 0 0 0");
+                stlLines.AppendLine("outer loop");
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[i].X + " " + Sonotrode3DModel.d3[i].Y + " " + Sonotrode3DModel.d3[i].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[i].X + " " + Sonotrode3DModel.d4[i].Y + " " + Sonotrode3DModel.d4[i].Z);
+                stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[i - 1].X + " " + Sonotrode3DModel.d4[i - 1].Y + " " + Sonotrode3DModel.d4[i - 1].Z);
+                stlLines.AppendLine("endloop");
+                stlLines.AppendLine("endfacet");
+            }
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[3].X + " " + Sonotrode3DModel.d1[3].Y + " " + Sonotrode3DModel.d1[3].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[0].X + " " + Sonotrode3DModel.d1[0].Y + " " + Sonotrode3DModel.d1[0].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[0].X + " " + Sonotrode3DModel.d2[0].Y + " " + Sonotrode3DModel.d2[0].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d1[3].X + " " + Sonotrode3DModel.d1[3].Y + " " + Sonotrode3DModel.d1[3].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[3].X + " " + Sonotrode3DModel.d2[3].Y + " " + Sonotrode3DModel.d2[3].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[0].X + " " + Sonotrode3DModel.d2[0].Y + " " + Sonotrode3DModel.d2[0].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[3].X + " " + Sonotrode3DModel.d2[3].Y + " " + Sonotrode3DModel.d2[3].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[0].X + " " + Sonotrode3DModel.d2[0].Y + " " + Sonotrode3DModel.d2[0].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[0].X + " " + Sonotrode3DModel.d3[0].Y + " " + Sonotrode3DModel.d3[0].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d2[3].X + " " + Sonotrode3DModel.d2[3].Y + " " + Sonotrode3DModel.d2[3].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[3].X + " " + Sonotrode3DModel.d3[3].Y + " " + Sonotrode3DModel.d3[3].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[0].X + " " + Sonotrode3DModel.d3[0].Y + " " + Sonotrode3DModel.d3[0].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[3].X + " " + Sonotrode3DModel.d3[3].Y + " " + Sonotrode3DModel.d3[3].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[0].X + " " + Sonotrode3DModel.d3[0].Y + " " + Sonotrode3DModel.d3[0].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[0].X + " " + Sonotrode3DModel.d4[0].Y + " " + Sonotrode3DModel.d4[0].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d3[3].X + " " + Sonotrode3DModel.d3[3].Y + " " + Sonotrode3DModel.d3[3].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[3].X + " " + Sonotrode3DModel.d4[3].Y + " " + Sonotrode3DModel.d4[3].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[0].X + " " + Sonotrode3DModel.d4[0].Y + " " + Sonotrode3DModel.d4[0].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[0].X + " " + Sonotrode3DModel.d4[0].Y + " " + Sonotrode3DModel.d4[0].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[1].X + " " + Sonotrode3DModel.d4[1].Y + " " + Sonotrode3DModel.d4[1].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[2].X + " " + Sonotrode3DModel.d4[2].Y + " " + Sonotrode3DModel.d4[2].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+            stlLines.AppendLine("facet normal 0 0 0");
+            stlLines.AppendLine("outer loop");
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[0].X + " " + Sonotrode3DModel.d4[0].Y + " " + Sonotrode3DModel.d4[0].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[2].X + " " + Sonotrode3DModel.d4[2].Y + " " + Sonotrode3DModel.d4[2].Z);
+            stlLines.AppendLine("vertex " + Sonotrode3DModel.d4[3].X + " " + Sonotrode3DModel.d4[3].Y + " " + Sonotrode3DModel.d4[3].Z);
+            stlLines.AppendLine("endloop");
+            stlLines.AppendLine("endfacet");
+
+
+
+            stlLines.AppendLine("endsolid Pizdec");
+
+            stlLines = stlLines.Replace(',', '.');
+
+            return stlLines.ToString();
         }
 
         //class GraphicThings

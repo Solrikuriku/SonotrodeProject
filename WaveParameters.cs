@@ -26,31 +26,31 @@ namespace SonotrodeProject
     //waveparameters отвечает за некоторые параметры на участке волны
     internal class WaveParameters
     {
-        public double L { private get; set; } //длина волны - длина сонотрода
-        public double ON { private get; set; } //узел колебаний
-        public double U { private get; set; } //скорость волны, равна speed of sound
+        internal double L { private get; set; } //длина волны - длина сонотрода
+        internal double ON { private get; set; } //узел колебаний
+        internal double U { private get; set; } //скорость волны, равна speed of sound
         //умножение на 1000 для перевода из м в мм, на 10 000 000 - для масштабирования
         //public int T { get { return (int)Math.Round(L / U * 10000); } }
-        public int T { get { return (int)L; } }
-        public int Center { get { return (int)Math.Round(T * ON); } }
-        public double Coefficient(double area)
-        {
-            //берем 0.5, так как это некое стандартное значение для сдвига
-            return 0.5 / area;
-        }
-        public double Shift(double area)
+        internal int T { get { return (int)L; } }
+        internal int Center { get { return (int)Math.Round(T * ON); } }
+        //public double Coefficient(double area)
+        //{
+        //    //берем 0.5, так как это некое стандартное значение для сдвига
+        //    return 0.5 / area;
+        //}
+        internal double Shift(double area)
         {
             return (Math.PI * (1 - ((float)ON  / ((float)area * 2))));
+            //return (Math.PI / 2) * (area / ON);
         }
-        public double ZoneCoeff(double length, double shift)
-        {
-            //берем 0.5, так как это некое стандартное значение для сдвига
-            return (Math.Asin(0)-shift)/(40000 * Math.PI * length);
-        }
+        //public double ZoneCoeff(double length, double shift)
+        //{
+        //    //берем 0.5, так как это некое стандартное значение для сдвига
+        //    return (Math.Asin(0) - shift) / (40000 * Math.PI * length);
+        //}
 
-        public double ZoneCoeff(double length)
+        internal double ZoneCoeff(double length)
         {
-            //берем 0.5, так как это некое стандартное значение для сдвига
             return (Math.Asin(1)) / (40000 * Math.PI * length);
         }
     }
@@ -60,13 +60,13 @@ namespace SonotrodeProject
     {
         //10 000 000 - это масштаб
         //формула синуса выведена экспериментальным путем, подробности в записке
-        double WaveX { get; }
-        double WaveY { get; }
+        internal double WaveX { get; }
+        internal double WaveY { get; }
         //это координаты волны для отрисовки
-        public double X { get; set; }
-        public double Y { get; }
+        internal double X { get; set; }
+        internal double Y { get; }
         //public WaveCoordinates(double a, double x, double height, int scale, double k, double coeff, double shift)
-        public WaveCoordinates(double a, double x, double height, int scale, double coeff, double shift)
+        internal WaveCoordinates(double a, double x, double height, int scale, double coeff, double shift)
         {
             this.X = x;
             WaveX = X;
@@ -82,12 +82,12 @@ namespace SonotrodeProject
     //пока реализовываем покрас по амплитуде напряжений
     internal abstract class ColorManipulation
     {
-        public static double GetHue(double x1, double x2, double y1, double y2, double a)
+        internal static double GetHue(double x1, double x2, double y1, double y2, double a)
         {
             var x = ((a - y1) / (y2 - y1)) * (x2 - x1) + x1;
             return x;
         }
-        public static Color HSVtoRGB(double H)
+        internal static Color HSVtoRGB(double H)
         {
             double R = 0, G = 0, B = 0;
 
@@ -102,7 +102,7 @@ namespace SonotrodeProject
 
             return Color.FromArgb((int)R, (int)G, (int)B);
         }
-        public static Color AmplitudeGradient(double a, double curA)
+        internal static Color AmplitudeGradient(double a, double curA)
         {
             //var step = a / 4;
 
@@ -120,7 +120,7 @@ namespace SonotrodeProject
 
             return HSVtoRGB(hue);
         }
-        public static Color CompstretchGradient(double a, double curA)
+        internal static Color CompstretchGradient(double a, double curA)
         {
             //var step = a / 2;
             //double hue = 0;
@@ -143,24 +143,32 @@ namespace SonotrodeProject
     //wavegradient сделать как интерфейс-виртуальный класс
     internal class WaveGradient : ColorManipulation
     {
-        public Pen PenColor { get; set; }
-        public PointF LinePixel { get; set; }
-        public PointF BorderPixel { get; set; }
+        internal Pen PenColor { get; }
+        internal PointF LinePixel { get; }
+        internal PointF BorderPixel { get; }
         //public static double AmplitudeValue { private get; set; }
-        public WaveGradient(double a, double height, PointF p, PointF border, int sc)
+        //internal WaveGradient(double a, double height, PointF l, PointF p, PointF border, int sc)
+        //{
+        //    //this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs((height / 2 - p.Y) / sc)));
+        //    this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs(p.Y)));
+        //    this.LinePixel = l;
+        //    this.BorderPixel = border;
+        //}
+        internal WaveGradient(double a, PointF l, double curY, PointF border)
         {
-            this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs((height / 2 - p.Y) / sc)));
-            this.LinePixel = p;
+            //this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs((height / 2 - p.Y) / sc)));
+            this.PenColor = new Pen(AmplitudeGradient(a, Math.Abs(curY)));
+            this.LinePixel = l;
             this.BorderPixel = border;
         }
     }
     internal class CompstretchGradient : ColorManipulation
     {
-        public Pen PenColor { get; set; }
-        public PointF LinePixel { get; set; }
-        public PointF BorderPixel { get; set; }
+        internal Pen PenColor { get; set; }
+        internal PointF LinePixel { get; set; }
+        internal PointF BorderPixel { get; set; }
         //public static double AmplitudeValue { private get; set; }
-        public CompstretchGradient(double a, double height, PointF p, PointF border, int sc)
+        internal CompstretchGradient(double a, double height, PointF p, PointF border, int sc)
         {
             this.PenColor = new Pen(CompstretchGradient(a, (height / 2 - p.Y) / sc));
             //this.PenColor = new Pen(CompstretchGradient(a, Math.Abs((height / 2 - p.Y) / 5)));
